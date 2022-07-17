@@ -59,9 +59,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn install --frozen-lockfile
+          yarn install --frozen-lockfile --prefer-offline
           cd docs
-          yarn install --frozen-lockfile
+          yarn install --frozen-lockfile --prefer-offline
 
       - name: Build Dist
         run: yarn build
