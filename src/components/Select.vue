@@ -136,13 +136,13 @@
 </template>
 
 <script>
-import pointerScroll from '../mixins/pointerScroll'
-import typeAheadPointer from '../mixins/typeAheadPointer'
-import ajax from '../mixins/ajax'
-import childComponents from './childComponents'
-import appendToBody from '../directives/appendToBody'
-import sortAndStringify from '../utility/sortAndStringify'
-import uniqueId from '../utility/uniqueId'
+import pointerScroll from '@/mixins/pointerScroll.js'
+import typeAheadPointer from '@/mixins/typeAheadPointer.js'
+import ajax from '@/mixins/ajax.js'
+import childComponents from '@/components/childComponents.js'
+import appendToBody from '@/directives/appendToBody.js'
+import sortAndStringify from '@/utility/sortAndStringify.js'
+import uniqueId from '@/utility/uniqueId.js'
 
 /**
  * @name VueSelect
@@ -890,7 +890,7 @@ export default {
         return optionList
       }
 
-      let options = this.search.length
+      const options = this.search.length
         ? this.filter(optionList, this.search, this)
         : optionList
       if (this.taggable && this.search.length) {
@@ -930,7 +930,7 @@ export default {
      * @return {[type]} [description]
      */
     options(newOptions, oldOptions) {
-      let shouldReset = () =>
+      const shouldReset = () =>
         typeof this.resetOnOptionsChange === 'function'
           ? this.resetOnOptionsChange(
               newOptions,
