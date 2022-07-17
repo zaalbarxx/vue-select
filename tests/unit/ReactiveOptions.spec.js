@@ -1,6 +1,6 @@
 import { it, describe, expect, vi, afterEach } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
-import VueSelect from '../../src/components/Select.vue'
+import VueSelect from '@/components/Select.vue'
 import { mountDefault } from '../helpers.js'
 
 describe('Reset on options change', () => {
@@ -46,7 +46,7 @@ describe('Reset on options change', () => {
     })
 
     it('should receive the new options, old options, and current value', async () => {
-      let resetOnOptionsChange = vi.fn((option) => option)
+      const resetOnOptionsChange = vi.fn((option) => option)
       const Select = mountDefault({
         resetOnOptionsChange,
         options: ['bear'],
@@ -64,7 +64,7 @@ describe('Reset on options change', () => {
     })
 
     it('should allow resetOnOptionsChange to be a function that returns true', async () => {
-      let resetOnOptionsChange = () => true
+      const resetOnOptionsChange = () => true
       spy = vi.spyOn(VueSelect.methods, 'clearSelection')
       const Select = shallowMount(VueSelect, {
         props: { resetOnOptionsChange, options: ['one'], modelValue: 'one' },
@@ -76,7 +76,7 @@ describe('Reset on options change', () => {
     })
 
     it('should allow resetOnOptionsChange to be a function that returns false', () => {
-      let resetOnOptionsChange = () => false
+      const resetOnOptionsChange = () => false
       spy = vi.spyOn(VueSelect.methods, 'clearSelection')
       const Select = shallowMount(VueSelect, {
         props: { resetOnOptionsChange, options: ['one'], modelValue: 'one' },
@@ -87,7 +87,7 @@ describe('Reset on options change', () => {
     })
 
     it('should reset the options if the selectedValue does not exist in the new options', async () => {
-      let resetOnOptionsChange = (options, old, val) =>
+      const resetOnOptionsChange = (options, old, val) =>
         val.some((val) => options.includes(val))
       spy = vi.spyOn(VueSelect.methods, 'clearSelection')
       const Select = shallowMount(VueSelect, {
@@ -136,7 +136,7 @@ describe('Reset on options change', () => {
 
   it('clearSearchOnBlur returns false when multiple is true', async () => {
     const Select = mountDefault({})
-    let clearSearchOnBlur = vi.spyOn(Select.vm.$.props, 'clearSearchOnBlur')
+    const clearSearchOnBlur = vi.spyOn(Select.vm.$.props, 'clearSearchOnBlur')
     await Select.get('input').trigger('click')
     Select.vm.search = 'one'
     await Select.get('input').trigger('blur')
@@ -150,7 +150,7 @@ describe('Reset on options change', () => {
   })
 
   it('clearSearchOnBlur accepts a function', async () => {
-    let clearSearchOnBlur = vi.fn(() => false)
+    const clearSearchOnBlur = vi.fn(() => false)
     const Select = mountDefault({ clearSearchOnBlur })
 
     await Select.get('input').trigger('click')

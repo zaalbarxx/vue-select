@@ -1,7 +1,7 @@
 import { it, describe, expect } from 'vitest'
 import { selectWithProps } from '../helpers.js'
 import { shallowMount } from '@vue/test-utils'
-import vSelect from '../../src/components/Select.vue'
+import vSelect from '@/components/Select.vue'
 
 describe('Asynchronous Loading', () => {
   it('can toggle the loading class', () => {

@@ -1,6 +1,6 @@
 import { it, describe, expect, vi } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
-import VueSelect from '../../src/components/Select.vue'
+import VueSelect from '@/components/Select.vue'
 import { selectWithProps } from '../helpers.js'
 
 describe('Labels', () => {

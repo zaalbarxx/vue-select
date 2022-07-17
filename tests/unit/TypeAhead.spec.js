@@ -1,6 +1,6 @@
 import { it, describe, expect } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
-import VueSelect from '../../src/components/Select.vue'
+import VueSelect from '@/components/Select.vue'
 import { mountDefault } from '../helpers.js'
 
 describe('Moving the Typeahead Pointer', () => {

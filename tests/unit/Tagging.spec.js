@@ -5,7 +5,7 @@ import {
   selectTag,
   selectWithProps,
 } from '../helpers.js'
-import VueSelect from '../../src/components/Select.vue'
+import VueSelect from '@/components/Select.vue'
 
 describe('When Tagging Is Enabled', () => {
   it('can determine if a given option string already exists', () => {
@@ -147,7 +147,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should select an existing option if the search string matches a string from options', async () => {
-    let two = 'two'
+    const two = 'two'
     const Select = selectWithProps({
       taggable: true,
       multiple: true,
@@ -160,7 +160,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should select an existing option if the search string matches an objects label from options', async () => {
-    let two = { label: 'two' }
+    const two = { label: 'two' }
     const Select = selectWithProps({
       taggable: true,
       options: [{ label: 'one' }, two],
@@ -171,7 +171,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should select an existing option if the search string matches an objects label from options when filter-options is false', async () => {
-    let two = { label: 'two' }
+    const two = { label: 'two' }
     const Select = selectWithProps({
       taggable: true,
       filterable: false,

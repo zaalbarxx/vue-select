@@ -1,7 +1,7 @@
 import { it, describe, expect, vi, afterEach } from 'vitest'
 import { selectWithProps } from '../helpers.js'
-import OpenIndicator from '../../src/components/OpenIndicator.vue'
-import VueSelect from '../../src/components/Select.vue'
+import OpenIndicator from '@/components/OpenIndicator.vue'
+import VueSelect from '@/components/Select.vue'
 
 const preventDefault = vi.fn()
 
