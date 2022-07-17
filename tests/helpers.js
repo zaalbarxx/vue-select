@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import VueSelect from '../src/components/Select.vue'
-import Vue from 'vue'
+import VueSelect from '@/src/components/Select.vue'
 
 /**
  * Trigger a submit event on the search
@@ -68,22 +67,4 @@ export const mountDefault = (props = {}, options = {}) => {
     },
     ...options,
   })
-}
-
-/**
- * Returns a v-select component directly.
- * @param props
- * @param options
- * @return {Vue | Element | Vue[] | Element[]}
- */
-export const mountWithoutTestUtils = (props = {}, options = {}) => {
-  return createApp({
-    render: (createEl) =>
-      createEl('vue-select', {
-        ref: 'select',
-        props: { options: ['one', 'two', 'three'], ...props },
-        ...options,
-      }),
-    components: { VueSelect },
-  }).mount().$refs.select
 }

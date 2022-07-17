@@ -1,6 +1,6 @@
 import { it, test, describe, expect, vi } from 'vitest'
 import { h } from 'vue'
-import { mountDefault } from '../helpers.js'
+import { mountDefault } from '@tests/helpers.js'
 
 describe('Scoped Slots', () => {
   it('receives an option object to the selected-option-container slot', () => {

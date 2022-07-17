@@ -1,6 +1,6 @@
 import { it, describe, expect, vi, afterEach } from 'vitest'
 import typeAheadPointer from '@/mixins/typeAheadPointer.js'
-import { mountDefault } from '../helpers.js'
+import { mountDefault } from '@tests/helpers.js'
 
 describe('Custom Keydown Handlers', () => {
   let spy
