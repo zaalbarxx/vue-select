@@ -1,4 +1,5 @@
-import Select from '../../src/components/Select.vue'
+import { it, describe, expect } from 'vitest'
+import Select from '@/components/Select.vue'
 
 describe('Serializing Option Keys', () => {
   const getOptionKey = Select.props.getOptionKey.default

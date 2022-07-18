@@ -4,16 +4,23 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
+          cache: yarn
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Test with Coverage
-        run: yarn test --coverage --coverageReporters=lcov
+        run: yarn coverage
 
       - name: ESLint
         run: yarn eslint
@@ -26,16 +33,20 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
+          cache: yarn
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
-          cd docs
-          yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --prefer-offline
 
       - name: Build Dist
         run: yarn build
@@ -44,4 +55,7 @@ jobs:
         run: npx bundlewatch
 
       - name: Build Docs
-        run: yarn build:docs
+        run: |
+          cd docs
+          yarn install --frozen-lockfile --prefer-offline
+          yarn build

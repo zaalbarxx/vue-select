@@ -1,10 +1,11 @@
+import { it, describe, expect } from 'vitest'
 import { mount, shallowMount } from '@vue/test-utils'
-import VueSelect from '../../src/components/Select'
-import { mountDefault } from '../helpers.js'
+import VueSelect from '@/components/Select.vue'
+import { mountDefault } from '@tests/helpers.js'
 
 describe('When reduce prop is defined', () => {
   it('determines when a reducer has been supplied', async () => {
-    let Select = mountDefault()
+    const Select = mountDefault()
     expect(Select.vm.isReducingValues).toBeFalsy()
 
     await Select.setProps({ reduce: () => {} })

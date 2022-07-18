@@ -1,10 +1,11 @@
+import { it, describe, expect, vi } from 'vitest'
 import {
   mountDefault,
   searchSubmit,
   selectTag,
   selectWithProps,
-} from '../helpers'
-import VueSelect from '../../src/components/Select'
+} from '@tests/helpers.js'
+import VueSelect from '@/components/Select.vue'
 
 describe('When Tagging Is Enabled', () => {
   it('can determine if a given option string already exists', () => {
@@ -146,7 +147,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should select an existing option if the search string matches a string from options', async () => {
-    let two = 'two'
+    const two = 'two'
     const Select = selectWithProps({
       taggable: true,
       multiple: true,
@@ -159,7 +160,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should select an existing option if the search string matches an objects label from options', async () => {
-    let two = { label: 'two' }
+    const two = { label: 'two' }
     const Select = selectWithProps({
       taggable: true,
       options: [{ label: 'one' }, two],
@@ -170,7 +171,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should select an existing option if the search string matches an objects label from options when filter-options is false', async () => {
-    let two = { label: 'two' }
+    const two = { label: 'two' }
     const Select = selectWithProps({
       taggable: true,
       filterable: false,
@@ -222,7 +223,7 @@ describe('When Tagging Is Enabled', () => {
   })
 
   it('should not allow duplicate tags when using object options', async () => {
-    const spy = jest.spyOn(VueSelect.methods, 'select')
+    const spy = vi.spyOn(VueSelect.methods, 'select')
     const Select = selectWithProps({
       taggable: true,
       multiple: true,

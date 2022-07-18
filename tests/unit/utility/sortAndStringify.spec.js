@@ -1,4 +1,5 @@
-import sortAndStringify from '../../../src/utility/sortAndStringify'
+import { test, expect } from 'vitest'
+import sortAndStringify from '@/utility/sortAndStringify'
 
 test('it will stringify an object', () => {
   expect(sortAndStringify({ hello: 'world' })).toEqual('{"hello":"world"}')
