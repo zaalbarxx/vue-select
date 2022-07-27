@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ContentFooterNavigation from "~/components/PageContentFooterNavigation.vue";
-import PageContentHeader from "~/components/PageContentHeader.vue";
-import PageTableOfContents from "~/components/PageTableOfContents.vue";
+import ContentFooterNavigation from '~/components/PageContentFooterNavigation.vue'
+import PageContentHeader from '~/components/PageContentHeader.vue'
+import PageTableOfContents from '~/components/PageTableOfContents.vue'
 </script>
 
 <template>

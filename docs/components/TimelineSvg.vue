@@ -181,6 +181,6 @@
 </template>
 <script>
 export default {
-  name: "TimelineSvg",
-};
+  name: 'TimelineSvg',
+}
 </script>

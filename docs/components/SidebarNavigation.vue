@@ -1,67 +1,67 @@
 <script lang="ts" setup>
 const navigation = [
   {
-    title: "Community",
+    title: 'Community',
     links: [
-      { title: "Sponsors 🎉", href: "/sponsors" },
-      { title: "Contributors", href: "/contributors" },
+      { title: 'Sponsors 🎉', href: '/sponsors' },
+      { title: 'Contributors', href: '/contributors' },
     ],
   },
   {
-    title: "Getting Started",
+    title: 'Getting Started',
     links: [
-      { href: "/guide/install", title: "Installation" },
-      { href: "/guide/options", title: "Dropdown Options" },
-      { href: "/guide/values", title: "Selecting Values" },
-      { href: "/guide/upgrading", title: "Upgrading 2.x to 3.x" },
+      { href: '/guide/install', title: 'Installation' },
+      { href: '/guide/options', title: 'Dropdown Options' },
+      { href: '/guide/values', title: 'Selecting Values' },
+      { href: '/guide/upgrading', title: 'Upgrading 2.x to 3.x' },
     ],
   },
   {
-    title: "Templating & Styling",
+    title: 'Templating & Styling',
     links: [
-      { href: "/guide/components", title: "Child Components" },
-      { href: "/guide/css", title: "CSS & Selectors" },
-      { href: "/guide/slots", title: "Slots" },
+      { href: '/guide/components', title: 'Child Components' },
+      { href: '/guide/css', title: 'CSS & Selectors' },
+      { href: '/guide/slots', title: 'Slots' },
     ],
   },
   {
-    title: "Accessibility",
+    title: 'Accessibility',
     links: [
-      { href: "/guide/accessibility", title: "WAI-ARIA Spec" },
-      { href: "/guide/localization", title: "Localization" },
+      { href: '/guide/accessibility', title: 'WAI-ARIA Spec' },
+      { href: '/guide/localization', title: 'Localization' },
     ],
   },
   {
-    title: "Use Cases",
+    title: 'Use Cases',
     links: [
-      { href: "/guide/validation", title: "Validation" },
-      { href: "/guide/selectable", title: "Limiting Selections" },
-      { href: "/guide/pagination", title: "Pagination" },
-      { href: "/guide/infinite-scroll", title: "Infinite Scroll" },
-      { href: "/guide/vuex", title: "Vuex" },
-      { href: "/guide/ajax", title: "AJAX" },
-      { href: "/guide/loops", title: "Using in Loops" },
+      { href: '/guide/validation', title: 'Validation' },
+      { href: '/guide/selectable', title: 'Limiting Selections' },
+      { href: '/guide/pagination', title: 'Pagination' },
+      { href: '/guide/infinite-scroll', title: 'Infinite Scroll' },
+      { href: '/guide/vuex', title: 'Vuex' },
+      { href: '/guide/ajax', title: 'AJAX' },
+      { href: '/guide/loops', title: 'Using in Loops' },
     ],
   },
   {
-    title: "Customizing",
+    title: 'Customizing',
     links: [
-      { href: "/guide/keydown", title: "Keydown Events" },
-      { href: "/guide/positioning", title: "Dropdown Position" },
-      { href: "/guide/opening", title: "Dropdown Opening" },
-      { href: "/guide/filtering", title: "Option Filtering" },
+      { href: '/guide/keydown', title: 'Keydown Events' },
+      { href: '/guide/positioning', title: 'Dropdown Position' },
+      { href: '/guide/opening', title: 'Dropdown Opening' },
+      { href: '/guide/filtering', title: 'Option Filtering' },
     ],
   },
   {
-    title: "API",
+    title: 'API',
     links: [
-      { href: "/api/props", title: "Props" },
-      { href: "/api/slots", title: "Slots" },
-      { href: "/api/events", title: "Events" },
+      { href: '/api/props', title: 'Props' },
+      { href: '/api/slots', title: 'Slots' },
+      { href: '/api/events', title: 'Events' },
     ],
   },
-];
-const router = { pathname: "" };
+]
+const router = { pathname: '' }
 </script>
 
 <template>

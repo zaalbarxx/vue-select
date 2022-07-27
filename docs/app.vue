@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import { useHead } from "#head";
-import Hero from "~/components/Hero.vue";
-import ApplicationHeader from "~/components/ApplicationHeader.vue";
-import SidebarNavigation from "~/components/SidebarNavigation.vue";
-import PageContent from "~/components/PageContent.vue";
-import { useContent } from "#imports";
+import { useHead } from '#head'
+import Hero from '~/components/Hero.vue'
+import ApplicationHeader from '~/components/ApplicationHeader.vue'
+import SidebarNavigation from '~/components/SidebarNavigation.vue'
+import PageContent from '~/components/PageContent.vue'
+import { useContent } from '#imports'
 
 useHead({
-  title: "Vue Select",
-  bodyAttrs: {
-    class: "bg-white dark:bg-slate-900",
-  },
-});
+  title: 'Vue Select',
+  bodyAttrs: { class: 'bg-white dark:bg-slate-900' },
+})
 
-const { page } = useContent();
+const { page } = useContent()
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useContent } from "#imports";
+import { useContent } from '#imports'
 
-const { page } = useContent();
+const { page } = useContent()
 </script>
 
 <template>

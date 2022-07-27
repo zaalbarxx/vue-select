@@ -5,18 +5,18 @@ import {
   ListboxLabel,
   ListboxOption,
   ListboxOptions,
-} from "@headlessui/vue";
-import LightIcon from "~/components/icons/LightIcon.vue";
-import DarkIcon from "~/components/icons/DarkIcon.vue";
-import SystemIcon from "~/components/icons/SystemIcon.vue";
+} from '@headlessui/vue'
+import LightIcon from '~/components/icons/LightIcon.vue'
+import DarkIcon from '~/components/icons/DarkIcon.vue'
+import SystemIcon from '~/components/icons/SystemIcon.vue'
 
 const themes = [
-  { name: "Light", value: "light", icon: LightIcon },
-  { name: "Dark", value: "dark", icon: DarkIcon },
-  { name: "System", value: "system", icon: SystemIcon },
-];
+  { name: 'Light', value: 'light', icon: LightIcon },
+  { name: 'Dark', value: 'dark', icon: DarkIcon },
+  { name: 'System', value: 'system', icon: SystemIcon },
+]
 
-const colorMode = useColorMode();
+const colorMode = useColorMode()
 </script>
 
 <template>

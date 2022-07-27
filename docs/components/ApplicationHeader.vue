@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { NuxtLink } from "#components";
-import ColorThemeSwitcher from "~/components/ThemeSwitcher.vue";
-import { useWindowScroll } from "@vueuse/core";
+import { NuxtLink } from '#components'
+import ColorThemeSwitcher from '~/components/ThemeSwitcher.vue'
+import { useWindowScroll } from '@vueuse/core'
 
-const { y } = useWindowScroll();
+const { y } = useWindowScroll()
 
-const isScrolled = computed(() => y.value !== 0);
+const isScrolled = computed(() => y.value !== 0)
 </script>
 
 <template>

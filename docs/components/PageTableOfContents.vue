@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from "#imports";
+import { computed, useContent } from '#imports'
 
-const { toc, page } = useContent();
-const shouldRender = computed(() => page.value.hideToc !== true);
+const { toc, page } = useContent()
+const shouldRender = computed(() => page.value?.hideToc !== true)
 </script>
 
 <template>

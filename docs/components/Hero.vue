@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Button from "~/components/Button.vue";
-import TimelineSvg from "~/components/TimelineSvg.vue";
+import Button from '~/components/Button.vue'
+import TimelineSvg from '~/components/TimelineSvg.vue'
 </script>
 
 <template>
