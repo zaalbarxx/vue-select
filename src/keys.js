@@ -1,0 +1,1 @@
+export const ListBoxInjectionKey = Symbol()
