@@ -1,22 +1,26 @@
 <template>
-  <div id="app">
+  <div class="flex items-center justify-center pt-40">
     <ListBox
       v-model="selected"
-      :open="open"
-      class="px-2 text-left border border-gray-500 rounded w-64 relative bg-blue-100 h-12"
+      v-model:open="open"
+      class="px-2 text-left border border-gray-500 rounded w-64 relative h-12"
     >
       {{ selected?.label }}
 
       <ListBoxMenu
-        class="absolute inset-0 top-12 w-full h-64 overflow-y-scroll bg-red-100 space-y-1"
+        class="absolute inset-0 top-12 w-full h-64 overflow-y-scroll space-y-1 border rounded"
       >
         <ListBoxOption
           @click="selected = country"
           v-for="country in config.options"
           :key="country.id"
-          class="px-2 py-1"
+          :class="['px-2 py-1']"
+          :value="country"
+          #default="{ isSelected }"
         >
-          {{ country.label }}
+          <span :class="{ 'text-indigo-600': isSelected }">
+            {{ country.label }}
+          </span>
         </ListBoxOption>
       </ListBoxMenu>
     </ListBox>
@@ -33,6 +37,7 @@ export default {
   components: { ListBoxOption, ListBoxMenu, ListBox },
   data: () => ({
     selected: null,
+    open: false,
 
     config: {
       options: countries,
@@ -40,26 +45,3 @@ export default {
   }),
 }
 </script>
-
-<style>
-html,
-body {
-  margin: 0;
-  height: 100%;
-  font-family: -apple-system, sans-serif;
-}
-
-#app {
-  height: 100%;
-  max-width: 20rem;
-  margin: 10rem auto 0;
-}
-
-hr {
-  border: none;
-  border-bottom: 1px solid #cacaca;
-  margin-bottom: 1em;
-  padding-top: 1em;
-  width: 90%;
-}
-</style>

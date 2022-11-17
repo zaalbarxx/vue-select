@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, inject } from 'vue'
 import { ListBoxInjectionKey } from '@/keys'
-import type { ComputedListBoxInjectionProps } from '@/components/ListBox/ListBox.vue'
+import type { InjectedListBoxProps } from '@/components/ListBox/ListBox.vue'
 
 withDefaults(
   defineProps<{
@@ -12,11 +12,11 @@ withDefaults(
   }
 )
 
-const listBoxProps = inject<ComputedListBoxInjectionProps>(ListBoxInjectionKey)
+const listBoxProps = inject<InjectedListBoxProps>(ListBoxInjectionKey)
 </script>
 
 <template>
-  <Component :is="as" v-show="listBoxProps?.open">
+  <Component :is="as" v-show="listBoxProps.open">
     <slot></slot>
   </Component>
 </template>

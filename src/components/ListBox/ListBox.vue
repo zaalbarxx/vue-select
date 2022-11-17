@@ -1,25 +1,45 @@
 <script setup lang="ts">
-import { ListBoxInjectionKey } from '@/keys.js'
+import { ListBoxInjectionKey } from '@/keys'
 import type { ComputedRef, PropType } from 'vue'
-import { provide, defineEmits, computed, ref } from 'vue'
+import { provide, defineEmits, computed, reactive, watch } from 'vue'
 
 export interface ListBoxProps {
   modelValue: PropType<unknown>
-  open?: boolean
+  open?: boolean | undefined
 }
+export interface ResolvedListBoxProps extends Omit<ListBoxProps, 'open'> {
+  open: boolean
+}
+export type InjectedListBoxProps = ComputedRef<ResolvedListBoxProps>
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'update:open', 'open', 'close'])
 
 const props = withDefaults(defineProps<ListBoxProps>(), {
-  open: false,
+  open: undefined,
 })
 
-export type ComputedListBoxInjectionProps = ComputedRef<ListBoxProps>
+const mutableState = reactive<{
+  open: boolean
+}>({
+  open: props.open === undefined ? false : props.open,
+})
 
-provide<ComputedListBoxInjectionProps>(
+watch(
+  () => mutableState.open,
+  (open) => emit('update:open', open)
+)
+
+const isOpen = computed<boolean>(() => {
+  if (props.open !== undefined) {
+    return props.open
+  }
+  return mutableState.open
+})
+
+provide<InjectedListBoxProps>(
   ListBoxInjectionKey,
-  computed<ListBoxProps>(() => ({
-    open: props.open,
+  computed<ResolvedListBoxProps>(() => ({
+    open: isOpen.value,
     modelValue: props.modelValue,
   }))
 )
@@ -31,7 +51,7 @@ provide<ComputedListBoxInjectionProps>(
     type="button"
     aria-haspopup="true"
     :aria-expanded="open"
-    @click.exact="open = !open"
+    @click.exact="mutableState.open = !mutableState.open"
   >
     <slot></slot>
   </button>
