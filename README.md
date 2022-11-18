@@ -24,7 +24,8 @@ developer experience, and customization.
 Complete documentation and examples available at https://vue-select.org.
 
 - **[API Documentation](https://vue-select.org)**
-- **[CodePen Template](http://codepen.io/sagalbot/pen/NpwrQO)**
+- **[Vue 2 CodePen Template](https://codepen.io/pen?template=VwdrdzG)**
+- **[Vue 3 CodePen Template](https://codepen.io/pen?template=NpwrQO)**
 
 ## Sponsors :tada:
 
