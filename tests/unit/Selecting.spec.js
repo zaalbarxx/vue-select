@@ -1,5 +1,5 @@
 import { it, describe, expect, vi, beforeEach, afterEach } from 'vitest'
-import { mount, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import VueSelect from '@/components/Select.vue'
 import typeAheadPointer from '@/mixins/typeAheadPointer.js'
 import { mountDefault } from '@tests/helpers.js'

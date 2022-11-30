@@ -84,7 +84,6 @@
     </div>
     <transition :name="transition">
       <DropdownMenu>
-        <slot name="list-header" v-bind="scope.listHeader" />
         <li
           v-for="(option, index) in filteredOptions"
           :id="`vs${uid}__option-${index}`"
@@ -111,7 +110,6 @@
             Sorry, no matching options.
           </slot>
         </li>
-        <slot name="list-footer" v-bind="scope.listFooter" />
       </DropdownMenu>
     </transition>
     <slot name="footer" v-bind="scope.footer" />

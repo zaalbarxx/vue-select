@@ -123,40 +123,4 @@ describe('Scoped Slots', () => {
       'deselect',
     ])
   })
-
-  test('list-header slot props', async () => {
-    const header = vi.fn()
-    const Select = mountDefault(
-      {},
-      {
-        slots: { 'list-header': header },
-      }
-    )
-    Select.vm.open = true
-    await Select.vm.$nextTick()
-    expect(Object.keys(header.mock.calls[0][0])).toEqual([
-      'search',
-      'loading',
-      'searching',
-      'filteredOptions',
-    ])
-  })
-
-  test('list-footer slot props', async () => {
-    const footer = vi.fn()
-    const Select = mountDefault(
-      {},
-      {
-        slots: { 'list-footer': footer },
-      }
-    )
-    Select.vm.open = true
-    await Select.vm.$nextTick()
-    expect(Object.keys(footer.mock.calls[0][0])).toEqual([
-      'search',
-      'loading',
-      'searching',
-      'filteredOptions',
-    ])
-  })
 })
