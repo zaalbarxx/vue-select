@@ -1,5 +1,5 @@
 import { it, describe, expect, vi } from 'vitest'
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import VueSelect from '@/components/Select.vue'
 import { selectWithProps } from '@tests/helpers.js'
 
@@ -29,7 +29,7 @@ describe('Labels', () => {
   })
 
   it('should display a placeholder if the value is empty', () => {
-    const Select = shallowMount(VueSelect, {
+    const Select = mount(VueSelect, {
       props: {
         options: ['one'],
       },
@@ -66,7 +66,7 @@ describe('Labels', () => {
      */
     // it('will not call getOptionLabel if both scoped option slots are used and a filter is provided', () => {
     //   const spy = spyOn(VueSelect.props.getOptionLabel, 'default')
-    //   const Select = shallowMount(VueSelect, {
+    //   const Select = mount(VueSelect, {
     //     props: {
     //       options: [{ name: 'one' }],
     //       filter: () => {},

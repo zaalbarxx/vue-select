@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import VueSelect from '@/components/Select.vue'
 
 /**
@@ -50,7 +50,7 @@ export const selectTag = async (Wrapper, searchText) => {
  * @returns {Wrapper<Vue>}
  */
 export const selectWithProps = (props = {}) => {
-  return shallowMount(VueSelect, { props })
+  return mount(VueSelect, { props })
 }
 
 /**
@@ -60,7 +60,7 @@ export const selectWithProps = (props = {}) => {
  * @return {Wrapper<Vue>}
  */
 export const mountDefault = (props = {}, options = {}) => {
-  return shallowMount(VueSelect, {
+  return mount(VueSelect, {
     props: {
       options: ['one', 'two', 'three'],
       ...props,

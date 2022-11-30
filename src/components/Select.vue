@@ -83,18 +83,7 @@
       </div>
     </div>
     <transition :name="transition">
-      <ul
-        v-if="dropdownOpen"
-        :id="`vs${uid}__listbox`"
-        ref="dropdownMenu"
-        :key="`vs${uid}__listbox`"
-        v-append-to-body
-        class="vs__dropdown-menu"
-        role="listbox"
-        tabindex="-1"
-        @mousedown.prevent="onMousedown"
-        @mouseup="onMouseUp"
-      >
+      <DropdownMenu>
         <slot name="list-header" v-bind="scope.listHeader" />
         <li
           v-for="(option, index) in filteredOptions"
@@ -123,37 +112,35 @@
           </slot>
         </li>
         <slot name="list-footer" v-bind="scope.listFooter" />
-      </ul>
-      <ul
-        v-else
-        :id="`vs${uid}__listbox`"
-        role="listbox"
-        style="display: none; visibility: hidden"
-      ></ul>
+      </DropdownMenu>
     </transition>
     <slot name="footer" v-bind="scope.footer" />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import pointerScroll from '@/mixins/pointerScroll.js'
 import typeAheadPointer from '@/mixins/typeAheadPointer.js'
 import ajax from '@/mixins/ajax.js'
 import childComponents from '@/components/childComponents.js'
-import appendToBody from '@/directives/appendToBody.js'
 import sortAndStringify from '@/utility/sortAndStringify.js'
 import uniqueId from '@/utility/uniqueId.js'
+import { computed, ComputedRef, defineComponent } from 'vue'
+import { VueSelectInjectionKey } from '@/symbols.js'
+import DropdownMenu from '@/components/DropdownMenu.vue'
 
-/**
- * @name VueSelect
- */
-export default {
-  components: { ...childComponents },
+export interface VueSelectContext {
+  uid: ComputedRef<string>
+  dropdownOpen: ComputedRef<boolean>
+  onMousedown: (e: MouseEvent) => void
+  onMouseup: (e: MouseEvent) => void
+}
 
-  directives: { appendToBody },
+export default defineComponent({
+  components: { DropdownMenu, ...childComponents },
 
   mixins: [pointerScroll, typeAheadPointer, ajax],
-  
+
   compatConfig: {
     MODE: 3,
   },
@@ -687,6 +674,19 @@ export default {
       type: [String, Number],
       default: () => uniqueId(),
     },
+  },
+
+  provide() {
+    return {
+      [VueSelectInjectionKey]: computed(() => {
+        return {
+          uid: this.uid,
+          dropdownOpen: this.dropdownOpen,
+          onMousedown: this.onMousedown,
+          onMouseup: this.onMouseUp,
+        }
+      }),
+    }
   },
 
   data() {
@@ -1362,5 +1362,5 @@ export default {
       }
     },
   },
-}
+})
 </script>
