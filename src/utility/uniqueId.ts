@@ -5,7 +5,7 @@ let idCount = 0
  * Thanks lodash!
  * @return {number}
  */
-function uniqueId() {
+function uniqueId(): number {
   return ++idCount
 }
 

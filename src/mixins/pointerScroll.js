@@ -20,6 +20,10 @@ export default {
   },
 
   methods: {
+    setTypeAheadPointer(index) {
+      this.typeAheadPointer = index
+    },
+
     /**
      * Adjust the scroll position of the dropdown list
      * if the current pointer is outside of the
@@ -28,16 +32,16 @@ export default {
      */
     maybeAdjustScroll() {
       const optionEl =
-        this.$refs.dropdownMenu?.children[this.typeAheadPointer] || false
+        this.dropdownMenuEl?.children[this.typeAheadPointer] || false
 
       if (optionEl) {
         const bounds = this.getDropdownViewport()
         const { top, bottom, height } = optionEl.getBoundingClientRect()
 
         if (top < bounds.top) {
-          return (this.$refs.dropdownMenu.scrollTop = optionEl.offsetTop)
+          return (this.dropdownMenuEl.scrollTop = optionEl.offsetTop)
         } else if (bottom > bounds.bottom) {
-          return (this.$refs.dropdownMenu.scrollTop =
+          return (this.dropdownMenuEl.scrollTop =
             optionEl.offsetTop - (bounds.height - height))
         }
       }
@@ -48,8 +52,8 @@ export default {
      * @returns {{top: (string|*|number), bottom: *}}
      */
     getDropdownViewport() {
-      return this.$refs.dropdownMenu
-        ? this.$refs.dropdownMenu.getBoundingClientRect()
+      return this.dropdownMenuEl
+        ? this.dropdownMenuEl.getBoundingClientRect()
         : {
             height: 0,
             top: 0,

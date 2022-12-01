@@ -82,36 +82,30 @@
         </slot>
       </div>
     </div>
-    <transition :name="transition">
-      <DropdownMenu>
-        <li
-          v-for="(option, index) in filteredOptions"
-          :id="`vs${uid}__option-${index}`"
-          :key="getOptionKey(option)"
-          role="option"
-          class="vs__dropdown-option"
-          :class="{
-            'vs__dropdown-option--deselect':
-              isOptionDeselectable(option) && index === typeAheadPointer,
-            'vs__dropdown-option--selected': isOptionSelected(option),
-            'vs__dropdown-option--highlight': index === typeAheadPointer,
-            'vs__dropdown-option--disabled': !selectable(option),
-          }"
-          :aria-selected="index === typeAheadPointer ? true : null"
-          @mouseover="selectable(option) ? (typeAheadPointer = index) : null"
-          @click.prevent.stop="selectable(option) ? select(option) : null"
-        >
-          <slot name="option" v-bind="normalizeOptionForSlot(option)">
-            {{ getOptionLabel(option) }}
+    <slot name="dropdown">
+      <transition :name="transition">
+        <DropdownMenu>
+          <slot name="options">
+            <DropdownMenuItem
+              v-for="(option, index) in filteredOptions"
+              :opinionated="true"
+              :index="index"
+              :option="option"
+              :key="getOptionKey(option)"
+            >
+              <slot name="option" v-bind="normalizeOptionForSlot(option)">
+                {{ getOptionLabel(option) }}
+              </slot>
+            </DropdownMenuItem>
+            <li v-if="filteredOptions.length === 0" class="vs__no-options">
+              <slot name="no-options" v-bind="scope.noOptions">
+                Sorry, no matching options.
+              </slot>
+            </li>
           </slot>
-        </li>
-        <li v-if="filteredOptions.length === 0" class="vs__no-options">
-          <slot name="no-options" v-bind="scope.noOptions">
-            Sorry, no matching options.
-          </slot>
-        </li>
-      </DropdownMenu>
-    </transition>
+        </DropdownMenu>
+      </transition>
+    </slot>
     <slot name="footer" v-bind="scope.footer" />
   </div>
 </template>
@@ -123,19 +117,14 @@ import ajax from '@/mixins/ajax.js'
 import childComponents from '@/components/childComponents.js'
 import sortAndStringify from '@/utility/sortAndStringify.js'
 import uniqueId from '@/utility/uniqueId.js'
-import { computed, ComputedRef, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { VueSelectInjectionKey } from '@/symbols.js'
 import DropdownMenu from '@/components/DropdownMenu.vue'
-
-export interface VueSelectContext {
-  uid: ComputedRef<string>
-  dropdownOpen: ComputedRef<boolean>
-  onMousedown: (e: MouseEvent) => void
-  onMouseup: (e: MouseEvent) => void
-}
+import type { VueSelectContext, VueSelectOption } from '@/types'
+import DropdownMenuItem from '@/components/DropdownMenuItem.vue'
 
 export default defineComponent({
-  components: { DropdownMenu, ...childComponents },
+  components: { DropdownMenuItem, DropdownMenu, ...childComponents },
 
   mixins: [pointerScroll, typeAheadPointer, ajax],
 
@@ -309,7 +298,7 @@ export default defineComponent({
      */
     reduce: {
       type: Function,
-      default: (option) => option,
+      default: (option: VueSelectOption) => option,
     },
 
     /**
@@ -318,12 +307,10 @@ export default defineComponent({
      *
      * @type {Function}
      * @since 3.3.0
-     * @param {Object|String} option
-     * @return {Boolean}
      */
     selectable: {
       type: Function,
-      default: (option) => true,
+      default: (option: VueSelectOption): boolean => true,
     },
 
     /**
@@ -341,7 +328,7 @@ export default defineComponent({
      */
     getOptionLabel: {
       type: Function,
-      default(option) {
+      default(option: VueSelectOption) {
         if (typeof option === 'object') {
           if (!option.hasOwnProperty(this.label)) {
             return console.warn(
@@ -374,7 +361,7 @@ export default defineComponent({
      */
     getOptionKey: {
       type: Function,
-      default(option) {
+      default(option: VueSelectOption): unknown {
         if (typeof option !== 'object') {
           return option
         }
@@ -659,7 +646,7 @@ export default defineComponent({
      */
     dropdownShouldOpen: {
       type: Function,
-      default({ noDrop, open, mutableLoading }) {
+      default({ noDrop, open, mutableLoading }): boolean {
         return noDrop ? false : open && !mutableLoading
       },
     },
@@ -676,12 +663,28 @@ export default defineComponent({
 
   provide() {
     return {
-      [VueSelectInjectionKey]: computed(() => {
+      [VueSelectInjectionKey]: computed<VueSelectContext>(() => {
         return {
           uid: this.uid,
+          getOptionKey: this.getOptionKey,
+          isOptionDeselectable: this.isOptionDeselectable,
+          isOptionSelected: this.isOptionSelected,
+          typeAheadPointer: this.typeAheadPointer,
+          setTypeAheadPointer: this.setTypeAheadPointer,
           dropdownOpen: this.dropdownOpen,
           onMousedown: this.onMousedown,
           onMouseup: this.onMouseUp,
+          selectable: this.selectable,
+          select: this.select,
+          setDropdownMenuEl: (ref: HTMLElement) => {
+            this.dropdownMenuEl = ref
+          },
+          registerSelectableEl: (ref: HTMLElement) => {
+            this.selectableEls.push(ref)
+          },
+          unRegisterSelectableEl: (ref: HTMLElement) => {
+            this.selectableEls = this.selectableEls.filter((el) => el !== ref)
+          },
         }
       }),
     }
@@ -696,6 +699,17 @@ export default defineComponent({
       // eslint-disable-next-line vue/no-reserved-keys
       _value: [], // Internal value managed by Vue Select if no `value` prop is passed
       deselectButtons: [],
+      dropdownMenuEl: null,
+      selectableEls: [],
+    } as {
+      search: string
+      open: boolean
+      isComposing: boolean
+      pushedTags: VueSelectOption[]
+      _value: any[]
+      deselectButtons: any[]
+      dropdownMenuEl: HTMLElement | null
+      selectableEls: HTMLElement[]
     }
   },
 
@@ -862,7 +876,7 @@ export default defineComponent({
      * dropdown menu.
      * @return {Boolean} True if open
      */
-    dropdownOpen() {
+    dropdownOpen(): boolean {
       return this.dropdownShouldOpen(this)
     },
 
@@ -1131,7 +1145,7 @@ export default defineComponent({
      * @param  {Object|String}  option
      * @return {Boolean}        True when selected | False otherwise
      */
-    isOptionSelected(option) {
+    isOptionSelected(option: VueSelectOption): boolean {
       return this.selectedValue.some((value) =>
         this.optionComparator(value, option)
       )
@@ -1140,7 +1154,7 @@ export default defineComponent({
     /**
      *  Can the current option be removed via the dropdown?
      */
-    isOptionDeselectable(option) {
+    isOptionDeselectable(option: VueSelectOption) {
       return this.isOptionSelected(option) && this.deselectFromDropdown
     },
 
