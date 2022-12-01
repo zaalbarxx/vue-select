@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
 
-export const VueSelectInjectionKey = Symbol(
-  'VueSelectInjectionKey'
-) as InjectionKey<string>
+export const DropdownMenuKey = Symbol('DropdownMenuKey')
+
+export const DropdownMenuItemKey = Symbol('DropdownMenuItemKey')

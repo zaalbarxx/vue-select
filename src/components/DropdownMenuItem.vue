@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { inject, onBeforeUnmount, onMounted, ref } from 'vue'
-import { VueSelectInjectionKey } from '@/symbols'
-import type { InjectedVueSelectContext, VueSelectOption } from '@/types'
+import { computed, inject, ref } from 'vue'
+import { DropdownMenuItemKey } from '@/symbols'
+import type { InjectedDropdownMenuItemContext, VueSelectOption } from '@/types'
 
-const context = inject<InjectedVueSelectContext>(VueSelectInjectionKey)
+const context = inject<InjectedDropdownMenuItemContext>(DropdownMenuItemKey)
 
 interface Props {
   as?: string
@@ -12,26 +12,23 @@ interface Props {
   opinionated?: boolean
 }
 
-withDefaults(defineProps<Props>(), { as: 'li', opinionated: true })
-
-const selectableOption = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  if (selectableOption.value) {
-    context?.value.registerSelectableEl(selectableOption.value)
-  }
+const props = withDefaults(defineProps<Props>(), {
+  as: 'li',
+  opinionated: true,
 })
 
-onBeforeUnmount(() => {
-  if (selectableOption.value) {
-    context?.value.unRegisterSelectableEl(selectableOption.value)
-  }
+const optionKey = computed(() => {
+  return context?.value.getOptionKey(props.option)
+})
+
+const shouldDisplay = computed(() => {
+  return context?.value.filteredOptionKeys.includes(optionKey.value)
 })
 </script>
 
 <template>
   <Component
-    ref="selectableOption"
+    v-if="shouldDisplay"
     :is="as"
     :id="`vs${context.uid}__option-${index}`"
     role="option"

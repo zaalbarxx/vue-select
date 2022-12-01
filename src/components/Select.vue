@@ -117,10 +117,17 @@ import ajax from '@/mixins/ajax.js'
 import childComponents from '@/components/childComponents.js'
 import sortAndStringify from '@/utility/sortAndStringify.js'
 import uniqueId from '@/utility/uniqueId.js'
-import { computed, defineComponent } from 'vue'
-import { VueSelectInjectionKey } from '@/symbols.js'
+import { computed, defineComponent, PropType } from 'vue'
+import { DropdownMenuItemKey, DropdownMenuKey } from '@/symbols.js'
 import DropdownMenu from '@/components/DropdownMenu.vue'
-import type { VueSelectContext, VueSelectOption } from '@/types'
+import type {
+  DropdownMenuContext,
+  DropdownMenuItemContext,
+  RegisteredOption,
+  SelectableElement,
+  VueSelectOption,
+  VueSelectOptionKey,
+} from '@/types'
 import DropdownMenuItem from '@/components/DropdownMenuItem.vue'
 
 export default defineComponent({
@@ -309,7 +316,7 @@ export default defineComponent({
      * @since 3.3.0
      */
     selectable: {
-      type: Function,
+      type: Function as PropType<(option: VueSelectOption) => boolean>,
       default: (option: VueSelectOption): boolean => true,
     },
 
@@ -327,7 +334,7 @@ export default defineComponent({
      * @return {String}
      */
     getOptionLabel: {
-      type: Function,
+      type: Function as PropType<(option: VueSelectOption) => string>,
       default(option: VueSelectOption) {
         if (typeof option === 'object') {
           if (!option.hasOwnProperty(this.label)) {
@@ -354,13 +361,9 @@ export default defineComponent({
      * slow with lots of objects.
      *
      * The result of this function *must* be unique.
-     *
-     * @type {Function}
-     * @param  {Object || String} option
-     * @return {String}
      */
     getOptionKey: {
-      type: Function,
+      type: Function as PropType<(option: VueSelectOption) => unknown>,
       default(option: VueSelectOption): unknown {
         if (typeof option !== 'object') {
           return option
@@ -587,7 +590,6 @@ export default defineComponent({
      * for the search input. Can be used to implement
      * custom behaviour for key presses.
      */
-
     mapKeydown: {
       type: Function,
       /**
@@ -663,29 +665,31 @@ export default defineComponent({
 
   provide() {
     return {
-      [VueSelectInjectionKey]: computed<VueSelectContext>(() => {
-        return {
+      [DropdownMenuKey]: computed<DropdownMenuContext>(() => {
+        const context: DropdownMenuContext = {
+          uid: this.uid,
+          dropdownOpen: this.dropdownOpen,
+          onMousedown: this.onMousedown,
+          onMouseup: this.onMouseUp,
+          setDropdownMenuEl: (el: HTMLElement | null) => {
+            this.dropdownMenuEl = el
+          },
+        }
+        return context
+      }),
+      [DropdownMenuItemKey]: computed<DropdownMenuItemContext>(() => {
+        const context: DropdownMenuItemContext = {
           uid: this.uid,
           getOptionKey: this.getOptionKey,
           isOptionDeselectable: this.isOptionDeselectable,
           isOptionSelected: this.isOptionSelected,
           typeAheadPointer: this.typeAheadPointer,
           setTypeAheadPointer: this.setTypeAheadPointer,
-          dropdownOpen: this.dropdownOpen,
-          onMousedown: this.onMousedown,
-          onMouseup: this.onMouseUp,
+          filteredOptionKeys: this.filteredOptionKeys,
           selectable: this.selectable,
           select: this.select,
-          setDropdownMenuEl: (ref: HTMLElement) => {
-            this.dropdownMenuEl = ref
-          },
-          registerSelectableEl: (ref: HTMLElement) => {
-            this.selectableEls.push(ref)
-          },
-          unRegisterSelectableEl: (ref: HTMLElement) => {
-            this.selectableEls = this.selectableEls.filter((el) => el !== ref)
-          },
         }
+        return context
       }),
     }
   },
@@ -700,7 +704,6 @@ export default defineComponent({
       _value: [], // Internal value managed by Vue Select if no `value` prop is passed
       deselectButtons: [],
       dropdownMenuEl: null,
-      selectableEls: [],
     } as {
       search: string
       open: boolean
@@ -709,7 +712,6 @@ export default defineComponent({
       _value: any[]
       deselectButtons: any[]
       dropdownMenuEl: HTMLElement | null
-      selectableEls: HTMLElement[]
     }
   },
 
@@ -752,7 +754,7 @@ export default defineComponent({
      *
      * @return {Array}
      */
-    optionList() {
+    optionList(): VueSelectOption[] {
       return this.options.concat(this.pushTags ? this.pushedTags : [])
     },
 
@@ -899,7 +901,7 @@ export default defineComponent({
      *
      * @return {array}
      */
-    filteredOptions() {
+    filteredOptions(): VueSelectOption[] {
       const optionList = [].concat(this.optionList)
 
       if (!this.filterable && !this.taggable) {
@@ -916,6 +918,10 @@ export default defineComponent({
         }
       }
       return options
+    },
+
+    filteredOptionKeys(): VueSelectOptionKey[] {
+      return this.filteredOptions.map((option) => this.getOptionKey(option))
     },
 
     /**
