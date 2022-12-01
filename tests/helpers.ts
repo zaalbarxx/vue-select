@@ -1,14 +1,16 @@
-import { mount, shallowMount } from '@vue/test-utils'
+import { mount, VueWrapper } from '@vue/test-utils'
 import VueSelect from '@/components/Select.vue'
+
+type WrappedVueSelect = VueWrapper<InstanceType<typeof VueSelect>>
 
 /**
  * Trigger a submit event on the search
  * input with a provided search text.
- *
- * @param Wrapper {Wrapper<Vue>}
- * @param searchText
  */
-export const searchSubmit = async (Wrapper, searchText = undefined) => {
+export const searchSubmit = async (
+  Wrapper: WrappedVueSelect,
+  searchText?: string
+) => {
   await Wrapper.get('input').trigger('focus')
 
   if (searchText) {
@@ -22,18 +24,18 @@ export const searchSubmit = async (Wrapper, searchText = undefined) => {
 /**
  * Focus the search input
  */
-export const searchFocus = async (Wrapper) => {
+export const searchFocus = async (Wrapper: WrappedVueSelect) => {
   await Wrapper.get('input').trigger('focus')
   await Wrapper.vm.$nextTick()
 }
 
 /**
  * Focus the input, enter some search text, hit return.
- * @param Wrapper {Wrapper<Vue>}
- * @param searchText
- * @return {Promise<void>}
  */
-export const selectTag = async (Wrapper, searchText) => {
+export const selectTag = async (
+  Wrapper: WrappedVueSelect,
+  searchText: string
+) => {
   Wrapper.vm.$refs.search.focus()
   await Wrapper.vm.$nextTick()
 
@@ -46,20 +48,15 @@ export const selectTag = async (Wrapper, searchText) => {
 /**
  * Create a new VueSelect instance with
  * a provided set of props.
- * @param props
- * @returns {Wrapper<Vue>}
  */
-export const selectWithProps = (props = {}) => {
+export const selectWithProps = (props = {}): WrappedVueSelect => {
   return mount(VueSelect, { props })
 }
 
 /**
  * Returns a Wrapper with a v-select component.
- * @param props
- * @param options
- * @return {Wrapper<Vue>}
  */
-export const mountDefault = (props = {}, options = {}) => {
+export const mountDefault = (props = {}, options = {}): WrappedVueSelect => {
   return mount(VueSelect, {
     props: {
       options: ['one', 'two', 'three'],

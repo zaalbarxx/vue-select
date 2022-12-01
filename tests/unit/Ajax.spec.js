@@ -1,5 +1,5 @@
 import { it, describe, expect } from 'vitest'
-import { selectWithProps } from '@tests/helpers.js'
+import { selectWithProps } from '@tests/helpers.ts'
 import { shallowMount } from '@vue/test-utils'
 import vSelect from '@/components/Select.vue'
 

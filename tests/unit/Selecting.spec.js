@@ -2,7 +2,7 @@ import { it, describe, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import VueSelect from '@/components/Select.vue'
 import typeAheadPointer from '@/mixins/typeAheadPointer.js'
-import { mountDefault } from '@tests/helpers.js'
+import { mountDefault } from '@tests/helpers.ts'
 
 describe('VS - Selecting Values', () => {
   let defaultProps
