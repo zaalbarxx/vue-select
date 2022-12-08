@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from 'nuxt'
 import { fileURLToPath, URL } from 'url'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -9,6 +8,13 @@ export default defineNuxtConfig({
 
   // https://color-mode.nuxtjs.org/
   colorMode: { classSuffix: '' },
+
+  app: {
+    head: {
+      title: 'Vue Select',
+      meta: [{ name: 'description', content: 'My amazing site.' }],
+    },
+  },
 
   // https://content.nuxtjs.org/api/configuration
   content: {
