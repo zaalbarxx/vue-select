@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   css: ['~/assets/styles/fonts.css'],
@@ -31,6 +32,15 @@ export default defineNuxtConfig({
       remarkPlugins: {},
       rehypePlugins: {
         'rehype-autolink-headings': false,
+      },
+    },
+  },
+
+  vite: {
+    resolve: {
+      alias: {
+        // resolve the aliases used in the vue-select build
+        '@': resolve(__dirname, '../src'),
       },
     },
   },

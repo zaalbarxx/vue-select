@@ -1,9 +1,3 @@
-<script setup>
-import vSelect from 'vue-select';
-import ReducerNestedValue from '@/components/ReducerNestedValue.vue';
-import ReducedWithNoMatchingOption from '@/components/ReducedWithNoMatchingOption.vue';
-</script>
-
 ## Getting and Setting
 
 ### `v-model`
@@ -75,7 +69,10 @@ is true, `v-model` and `value` must be an array.
 <v-select multiple v-model="selected" :options="['Canada','United States']" />
 ```
 
-<v-select multiple :options="['Canada','United States']" />
+::vue-select{options=['Canada','United States'],multiple=true}
+
+::
+
 
 ## Transforming Selections
 
@@ -151,7 +148,7 @@ To allow input that's not present within the options, set the `taggable` prop to
 <v-select taggable multiple />
 ```
 
-<v-select taggable multiple />
+<vue-select taggable multiple />
 
 If you want added tags to be pushed to the options array, set `push-tags` to true.
 
@@ -159,7 +156,7 @@ If you want added tags to be pushed to the options array, set `push-tags` to tru
 <v-select taggable multiple push-tags />
 ```
 
-<v-select taggable multiple push-tags />
+<vue-select taggable multiple push-tags />
 
 ### Using `taggable` & `reduce` together
 

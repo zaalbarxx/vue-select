@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Button from '~/components/Button.vue'
 import TimelineSvg from '~/components/TimelineSvg.vue'
-import VueSelect from 'vue-select'
+import VueSelect from '~/components/VueSelect.vue'
 </script>
 
 <template>
@@ -84,7 +84,7 @@ import VueSelect from 'vue-select'
               ></div>
               <div class="pl-4 pt-4">
                 <div class="mt-6 flex items-start px-1 text-sm">
-                  <vue-select :options="['hello']" />
+                  <VueSelect :options="['hello']" />
                 </div>
               </div>
             </div>
