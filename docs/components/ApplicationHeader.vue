@@ -46,25 +46,38 @@ const isScrolled = computed(() => y.value !== 0)
       ></div>
     </div>
     <div class="relative flex flex-grow basis-0 items-center">
-      <NuxtLink aria-label="Home page" href="/">
+      <NuxtLink
+        aria-label="Home page"
+        href="/"
+        class="flex items-center space-x-2"
+      >
         <svg
-          aria-hidden="true"
-          viewBox="0 0 36 36"
           fill="none"
-          class="h-9 w-9 fill-slate-700 dark:fill-sky-100"
+          class="h-9 w-9"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 87 68"
         >
-          <g
-            fill="none"
-            stroke="#38BDF8"
-            stroke-linejoin="round"
-            stroke-width="3"
-          >
-            <path d="M10.308 5L18 17.5 10.308 30 2.615 17.5 10.308 5z"></path>
-            <path
-              d="M18 17.5L10.308 5h15.144l7.933 12.5M18 17.5h15.385L25.452 30H10.308L18 17.5z"
-            ></path>
-          </g>
+          <path
+            class="fill-current fill-[#0EE2FF] dark:fill-sky-900"
+            fill-rule="evenodd"
+            d="M62.1429 6.1818H24.8571c-10.2961 0-18.6428 8.3031-18.6428 18.5455v18.5454c0 10.2424 8.3467 18.5455 18.6428 18.5455h37.2858c10.2961 0 18.6428-8.3031 18.6428-18.5455V24.7273c0-10.2424-8.3467-18.5455-18.6428-18.5455ZM24.8571 0C11.1289 0 0 11.0708 0 24.7273v18.5454C0 56.9292 11.1289 68 24.8571 68h37.2858C75.8711 68 87 56.9292 87 43.2727V24.7273C87 11.0708 75.8711 0 62.1429 0H24.8571Z"
+            clip-rule="evenodd"
+          />
+          <path
+            class="fill-current fill-[#111112] dark:fill-[#0EE2FF]"
+            fill-rule="evenodd"
+            d="M60.1875 9.125h-33.375c-9.2163 0-16.6875 7.4712-16.6875 16.6875V42.5c0 9.2162 7.4712 16.6875 16.6875 16.6875h33.375c9.2162 0 16.6875-7.4713 16.6875-16.6875V25.8125c0-9.2163-7.4713-16.6875-16.6875-16.6875Zm-33.375-5.5625c-12.2883 0-22.25 9.9617-22.25 22.25V42.5c0 12.2883 9.9617 22.25 22.25 22.25h33.375c12.2883 0 22.25-9.9617 22.25-22.25V25.8125c0-12.2883-9.9617-22.25-22.25-22.25h-33.375Z"
+            clip-rule="evenodd"
+          />
+          <path
+            class="fill-current fill-[#000] dark:fill-sky-50"
+            fill-rule="evenodd"
+            d="M43.7221 18.025a2.2806 2.2806 0 0 1 1.6124.6682l6.8419 6.8419a2.2807 2.2807 0 0 1-3.2248 3.2248l-5.2295-5.2295-5.2295 5.2295a2.2807 2.2807 0 0 1-3.2248-3.2248l6.8419-6.8419a2.2806 2.2806 0 0 1 1.6124-.6682Zm-8.4543 21.1938a2.281 2.281 0 0 1 3.2248 0l5.2295 5.2295 5.2295-5.2295a2.2807 2.2807 0 0 1 3.2248 3.2248l-6.8419 6.8419a2.2804 2.2804 0 0 1-3.2248 0l-6.8419-6.8419a2.2806 2.2806 0 0 1 0-3.2248Z"
+            clip-rule="evenodd"
+          />
         </svg>
+
+        <span class="font-bold text-sky-900 dark:text-sky-50">Vue Select</span>
       </NuxtLink>
     </div>
     <div class="-my-5 mr-6 sm:mr-8 md:mr-0">
