@@ -10,9 +10,7 @@ yarn add vue-select@beta
 npm install vue-select@beta
 ```
 
-Next you'll import and register the component. You can register the component globally or locally. *
-Unsure what this means? Check
-the [VueJS docs on component registration](https://vuejs.org/guide/components/registration.html#component-registration)
+Next you'll import and register the component. You can register the component globally or locally. *Unsure what this means? Check the [VueJS docs on component registration](https://vuejs.org/guide/components/registration.html#component-registration)
 .*
 
 ### Global Registration

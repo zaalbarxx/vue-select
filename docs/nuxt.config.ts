@@ -1,5 +1,4 @@
-import { fileURLToPath, URL } from 'url'
-
+import { resolve } from 'path'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   css: ['~/assets/styles/fonts.css'],
@@ -40,9 +39,8 @@ export default defineNuxtConfig({
   vite: {
     resolve: {
       alias: {
-        'vue-select': fileURLToPath(
-          new URL('../src/index.js', import.meta.url)
-        ),
+        // resolve the aliases used in the vue-select build
+        '@': resolve(__dirname, '../src'),
       },
     },
   },
