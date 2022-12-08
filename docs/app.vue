@@ -5,6 +5,7 @@ import ApplicationHeader from '~/components/ApplicationHeader.vue'
 import SidebarNavigation from '~/components/SidebarNavigation.vue'
 import PageContent from '~/components/PageContent.vue'
 import { useContent } from '#imports'
+import '../src/css/vue-select.css'
 
 useHead({
   title: 'Vue Select',

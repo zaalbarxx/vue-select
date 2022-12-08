@@ -1,5 +1,3 @@
-import { fileURLToPath, URL } from 'url'
-
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   css: ['~/assets/styles/fonts.css'],
@@ -33,16 +31,6 @@ export default defineNuxtConfig({
       remarkPlugins: {},
       rehypePlugins: {
         'rehype-autolink-headings': false,
-      },
-    },
-  },
-
-  vite: {
-    resolve: {
-      alias: {
-        'vue-select': fileURLToPath(
-          new URL('../src/index.js', import.meta.url)
-        ),
       },
     },
   },

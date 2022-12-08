@@ -13,7 +13,7 @@ const navigation = [
       { href: '/guide/install', title: 'Installation' },
       { href: '/guide/options', title: 'Dropdown Options' },
       { href: '/guide/values', title: 'Selecting Values' },
-      { href: '/guide/upgrading', title: 'Upgrading 2.x to 3.x' },
+      { href: '/guide/upgrading', title: 'Upgrade Guide' },
     ],
   },
   {

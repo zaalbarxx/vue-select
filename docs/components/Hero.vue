@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from '~/components/Button.vue'
 import TimelineSvg from '~/components/TimelineSvg.vue'
+import VueSelect from 'vue-select'
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import TimelineSvg from '~/components/TimelineSvg.vue'
   >
     <div class="py-16 sm:px-2 lg:relative lg:py-20 lg:px-0">
       <div
-        class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12"
+        class="lg:max-w-8xl mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 px-4 lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12"
       >
         <div class="relative z-10 md:text-center lg:text-left">
           <img
@@ -22,7 +23,7 @@ import TimelineSvg from '~/components/TimelineSvg.vue'
           />
           <div class="relative">
             <p
-              class="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent"
+              class="font-display inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text text-5xl tracking-tight text-transparent"
             >
               The complete Vue.js combobox solution.
             </p>
@@ -82,7 +83,9 @@ import TimelineSvg from '~/components/TimelineSvg.vue'
                 class="absolute -bottom-px left-11 right-20 h-px bg-gradient-to-r from-blue-400/0 via-blue-400 to-blue-400/0"
               ></div>
               <div class="pl-4 pt-4">
-                <div class="mt-6 flex items-start px-1 text-sm"></div>
+                <div class="mt-6 flex items-start px-1 text-sm">
+                  <vue-select :options="['hello']" />
+                </div>
               </div>
             </div>
           </div>
