@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  css: ['~/assets/styles/fonts.css'],
+  css: ['~/assets/styles/fonts.css', '~/assets/styles/variables.css'],
 
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxt/content'],
 

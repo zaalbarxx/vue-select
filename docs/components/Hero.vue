@@ -2,6 +2,11 @@
 import Button from '~/components/Button.vue'
 import TimelineSvg from '~/components/TimelineSvg.vue'
 import VueSelect from '~/components/VueSelect.vue'
+import {
+  SparklesIcon,
+  ArrowDownTrayIcon,
+  RocketLaunchIcon,
+} from '@heroicons/vue/20/solid'
 </script>
 
 <template>
@@ -15,6 +20,7 @@ import VueSelect from '~/components/VueSelect.vue'
         <div class="relative z-10 md:text-center lg:text-left">
           <img
             alt=""
+            aria-hidden="true"
             src="~/assets/img/blur-cyan.png"
             decoding="async"
             class="absolute bottom-full right-full -mr-72 -mb-56 opacity-50"
@@ -82,10 +88,29 @@ import VueSelect from '~/components/VueSelect.vue'
               <div
                 class="absolute -bottom-px left-11 right-20 h-px bg-gradient-to-r from-blue-400/0 via-blue-400 to-blue-400/0"
               ></div>
-              <div class="pl-4 pt-4">
-                <div class="mt-6 flex items-start px-1 text-sm">
-                  <VueSelect :options="['hello']" />
+              <div class="p-4 dark">
+                <div class="flex items-center space-x-4">
+                  <span
+                    class="inline-flex items-center rounded-md bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-gray-400"
+                  >
+                    <ArrowDownTrayIcon class="w-3 h-3 mr-1" />
+                    960k installs/month
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-gray-400"
+                  >
+                    <SparklesIcon class="w-3 h-3 mr-1" />
+                    4.5k stars
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-gray-400"
+                  >
+                    <RocketLaunchIcon class="w-3 h-3 mr-1" />
+                    Vue 3
+                  </span>
                 </div>
+
+                <VueSelect class="w-full mt-4" :options="['hello']" />
               </div>
             </div>
           </div>
@@ -94,3 +119,10 @@ import VueSelect from '~/components/VueSelect.vue'
     </div>
   </div>
 </template>
+
+<style scoped>
+.v-select {
+  --vs-border-color: rgba(125, 211, 252, 0.3);
+  --vs-actions-padding: 0.25rem 0.5rem;
+}
+</style>

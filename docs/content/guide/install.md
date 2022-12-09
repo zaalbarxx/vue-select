@@ -27,7 +27,6 @@ app.component('vSelect', vSelect);
 ### Local Registration
 
 ```vue
-
 <script>
 import vSelect from 'vue-select'
 
@@ -40,6 +39,8 @@ export default {
   <vSelect />
 </template>
 ```
+
+### CSS
 
 The component itself does not include any CSS. You'll need to include it separately:
 
@@ -62,8 +63,8 @@ global variable. You'll need to load Vue.js, vue-select JS & vue-select CSS.
 <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
 
 <!-- or point to a specific vue-select release -->
-<script src="https://unpkg.com/vue-select@3.0.0"></script>
-<link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
+<script src="https://unpkg.com/vue-select@4.0.0"></script>
+<link rel="stylesheet" href="https://unpkg.com/vue-select@4.0.0/dist/vue-select.css">
 ```
 
 Then register the component in your javascript:
@@ -79,7 +80,9 @@ url: dJjzeP
 
 ## Vue Compatibility
 
-| Vue  | Vue Select | Notes                                                                      |
-|------|------------|----------------------------------------------------------------------------|
-| ^2.3 | 3.x        | The 3.x branch of Vue Select supports Vue 2.3 and above. View the v3 docs. |
-| ^3.0 | 4.0-beta   | The latest version of Vue Select for Vue 3 applications.                   |
+You're currently reading the docs for version 4 of Vue Select, which is designed for Vue 3.
+
+| Vue  | Vue Select | Docs                      |
+|------|------------|---------------------------|
+| ^2.3 | 3.0        | https://v3.vue-select.org |
+| ^3.0 | 4.0        | https://vue-select.org    |
