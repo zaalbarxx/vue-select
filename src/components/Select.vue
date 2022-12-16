@@ -571,7 +571,12 @@ export default {
      */
     selectOnKeyCodes: {
       type: Array,
-      default: () => [13],
+      default: () => [
+        // enter
+        13,
+        // space
+        32,
+      ],
     },
 
     /**
@@ -953,6 +958,12 @@ export default {
     open(isOpen) {
       this.$emit(isOpen ? 'open' : 'close')
     },
+
+    search(search) {
+      if (search.length) {
+        this.open = true
+      }
+    },
   },
 
   created() {
@@ -1035,7 +1046,6 @@ export default {
     onAfterSelect(option) {
       if (this.closeOnSelect) {
         this.open = !this.open
-        this.searchEl.blur()
       }
 
       if (this.clearSearchOnSelect) {
@@ -1240,7 +1250,7 @@ export default {
      */
     onEscape() {
       if (!this.search.length) {
-        this.searchEl.blur()
+        this.open = false
       } else {
         this.search = ''
       }
@@ -1302,7 +1312,7 @@ export default {
 
     /**
      * Search <input> KeyBoardEvent handler.
-     * @param e {KeyboardEvent}
+     * @param {KeyboardEvent} e
      * @return {Function}
      */
     onSearchKeyDown(e) {
@@ -1321,11 +1331,19 @@ export default {
         //  up.prevent
         38: (e) => {
           e.preventDefault()
+          if (!this.open) {
+            this.open = true
+            return
+          }
           return this.typeAheadUp()
         },
         //  down.prevent
         40: (e) => {
           e.preventDefault()
+          if (!this.open) {
+            this.open = true
+            return
+          }
           return this.typeAheadDown()
         },
       }
