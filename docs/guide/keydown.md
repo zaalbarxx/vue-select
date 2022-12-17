@@ -4,16 +4,17 @@
 ## selectOnKeyCodes <Badge text="v3.3.0+" />
 
 `selectOnKeyCodes {Array}` is an array of keyCodes that will trigger a typeAheadSelect. Any keyCodes
- in this array will prevent the default event action and trigger a typeahead select. By default, 
- it's just `[13]` for return. For example, maybe you want to tag on a comma keystroke:
- 
+in this array will prevent the default event action and trigger a typeahead select. By default,
+it's just `[13]` for return. For example, maybe you want to tag on a comma keystroke:
+
 <TagOnComma /> 
- 
+
 <<< @/.vuepress/components/TagOnComma.vue
 
 ## mapKeyDown <Badge text="v3.3.0+" />
 
-Vue Select provides the `map-keydown` Function prop to allow for customizing the components response to 
+Vue Select provides the `mapKeyDown` Function prop to allow for customizing the components response
+to
 keydown events while the search input has focus.
 
 ```js
@@ -29,37 +30,37 @@ By default, the prop is a no–op returning the same object `map` object it rece
 maps keyCodes to handlers: `{ <keyCode>: <callback> }`. Modifying this object can override default
 functionality, or add handlers for different keys that the component doesn't normally listen for.
 
-Note that any keyCodes you've added to `selectOnKeyCodes` will be passed to `map-keydown` as well,
-so `map-keydown` will always take precedence.
+Note that any keyCodes you've added to `selectOnKeyCodes` will be passed to `mapKeyDown` as well,
+so `mapKeyDown` will always take precedence.
 
 **Default Handlers**
 
 ```js
-//  delete
-8: e => this.maybeDeleteValue()
-
-//  tab
-9: e => this.onTab()
-
-//  enter
-13: e => {
-    e.preventDefault();
-    return this.typeAheadSelect();
-}
-
-//  esc
-27: e => this.onEscape()
-
-//  up
-38: e => {
-    e.preventDefault();
-    return this.typeAheadUp();
-}
-
-//  down
-40: e => {
-    e.preventDefault();
-    return this.typeAheadDown();
+const defaults = {
+    //  backspace
+    8: (e) => this.maybeDeleteValue(),
+    //  tab
+    9: (e) => this.onTab(),
+    //  esc
+    27: (e) => this.onEscape(),
+    //  up.prevent
+    38: (e) => {
+        e.preventDefault()
+        if (!this.open) {
+            this.open = true
+            return
+        }
+        return this.typeAheadUp()
+    },
+    //  down.prevent
+    40: (e) => {
+        e.preventDefault()
+        if (!this.open) {
+            this.open = true
+            return
+        }
+        return this.typeAheadDown()
+    },
 }
 ```
 
@@ -71,3 +72,20 @@ This is example listens for the `@` key, and autocompletes an email address with
 
 <<< @/.vuepress/components/CustomHandlers.vue
 
+## mapKeyPress <Badge text="v3.21+" />
+
+`mapKeyPress` prop is identical in functionality to `mapKeyDown`, but it's called on `keypress`
+events instead of `keydown`. The keypress event is used to detect space bar presses when the input
+has focus, and the menu is closed.
+
+```js
+ const defaults = {
+    //  space
+    32: (e) => {
+        if (!this.open) {
+            e.preventDefault()
+            this.open = true
+        }
+    },
+}
+```

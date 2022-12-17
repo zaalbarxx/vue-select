@@ -596,8 +596,22 @@ export default {
      * for the search input. Can be used to implement
      * custom behaviour for key presses.
      */
-
     mapKeydown: {
+      type: Function,
+      /**
+       * @param map {Object}
+       * @param vm {VueSelect}
+       * @return {Object}
+       */
+      default: (map, vm) => map,
+    },
+
+    /**
+     * Used to modify the default keypress events map
+     * for the search input. Can be used to implement
+     * custom behaviour for key presses.
+     */
+    mapKeyPress: {
       type: Function,
       /**
        * @param map {Object}
@@ -1331,19 +1345,17 @@ export default {
         38: (e) => {
           e.preventDefault()
           if (!this.open) {
-            this.open = true
-            return
+            return (this.open = true)
           }
-          return this.typeAheadUp()
+          this.typeAheadUp()
         },
         //  down.prevent
         40: (e) => {
           e.preventDefault()
           if (!this.open) {
-            this.open = true
-            return
+            return (this.open = true)
           }
-          return this.typeAheadDown()
+          this.typeAheadDown()
         },
       }
 
@@ -1359,13 +1371,23 @@ export default {
     },
 
     /**
-     * @todo: Probably want to add a mapKeyPress method just like we have for keydown.
      * @param {KeyboardEvent} e
      */
     onSearchKeyPress(e) {
-      if (!this.open && e.keyCode === 32) {
-        e.preventDefault()
-        this.open = true
+      const defaults = {
+        //  space
+        32: (e) => {
+          if (!this.open) {
+            e.preventDefault()
+            this.open = true
+          }
+        },
+      }
+
+      const handlers = this.mapKeyPress(defaults, this)
+
+      if (typeof handlers[e.keyCode] === 'function') {
+        return handlers[e.keyCode](e)
       }
     },
   },
