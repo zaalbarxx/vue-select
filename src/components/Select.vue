@@ -574,8 +574,6 @@ export default {
       default: () => [
         // enter
         13,
-        // space
-        32,
       ],
     },
 
@@ -773,6 +771,7 @@ export default {
             compositionstart: () => (this.isComposing = true),
             compositionend: () => (this.isComposing = false),
             keydown: this.onSearchKeyDown,
+            keypress: this.onSearchKeyPress,
             blur: this.onSearchBlur,
             focus: this.onSearchFocus,
             input: (e) => (this.search = e.target.value),
@@ -1356,6 +1355,17 @@ export default {
 
       if (typeof handlers[e.keyCode] === 'function') {
         return handlers[e.keyCode](e)
+      }
+    },
+
+    /**
+     * @todo: Probably want to add a mapKeyPress method just like we have for keydown.
+     * @param {KeyboardEvent} e
+     */
+    onSearchKeyPress(e) {
+      if (!this.open && e.keyCode === 32) {
+        e.preventDefault()
+        this.open = true
       }
     },
   },
