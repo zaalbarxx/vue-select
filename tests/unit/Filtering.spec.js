@@ -21,6 +21,14 @@ describe('Filtering Options', () => {
     expect(Select.vm.filteredOptions).toEqual(['bar', 'baz'])
   })
 
+  it('can filter items with spaces', () => {
+    const Select = shallowMount(VueSelect, {
+      propsData: { options: ['foo bar', 'baz'] },
+    })
+    Select.vm.search = ' '
+    expect(Select.vm.filteredOptions).toEqual(['foo bar'])
+  })
+
   it('should not filter the array of strings if filterable is false', () => {
     const Select = shallowMount(VueSelect, {
       propsData: { options: ['foo', 'bar', 'baz'], filterable: false },
@@ -82,27 +90,5 @@ describe('Filtering Options', () => {
     })
     Select.vm.search = '1'
     expect(Select.vm.filteredOptions).toEqual([1, 10])
-  })
-
-  it('should open dropdown on alphabetic input', async () => {
-    const Select = shallowMount(VueSelect)
-
-    const input = Select.find('.vs__search')
-    input.element.value = 'a'
-    input.trigger('input')
-    await Select.vm.$nextTick()
-
-    expect(Select.vm.open).toEqual(true)
-  })
-
-  it('should open dropdown on numeric input', async () => {
-    const Select = shallowMount(VueSelect)
-
-    const input = Select.find('.vs__search')
-    input.element.value = 1
-    input.trigger('input')
-    await Select.vm.$nextTick()
-
-    expect(Select.vm.open).toEqual(true)
   })
 })
