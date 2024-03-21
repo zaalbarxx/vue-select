@@ -4,7 +4,7 @@ sidebarDepth: 0
 
 ## Springloaded
 
-Vue Select is now being directly supported by [Springloaded](https://springloaded.co) 🎉, a software
+Vue Select is now being directly supported by [Springloaded](https://springloaded.co?ref=vue-select) 🎉, a software
 agency founded by [Owen Conti](https://github.com/owenconti)
 and [Jeff Sagal](https://github.com/sagalbot) - the maintainer of Vue Select.
 
