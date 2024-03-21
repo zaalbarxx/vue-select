@@ -1,24 +1,31 @@
 import { resolve } from 'path'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  css: ['~/assets/styles/fonts.css', '~/assets/styles/variables.css'],
-
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxt/content'],
-
+  css: ['~/assets/styles/main.css'],
+  modules: [
+    '@nuxtjs/color-mode',
+    '@nuxt/content',
+    '@nuxtjs/google-fonts',
+    'nuxt-svgo',
+  ],
   // https://color-mode.nuxtjs.org/
   colorMode: { classSuffix: '' },
-
+  postcss: {
+    plugins: {
+      'tailwindcss/nesting': {},
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   app: {
     head: {
       title: 'Vue Select',
       meta: [{ name: 'description', content: 'My amazing site.' }],
     },
   },
-
   // https://content.nuxtjs.org/api/configuration
   content: {
     documentDriven: true,
-
     // https://content.nuxtjs.org/api/configuration/#highlighttheme
     highlight: {
       theme: {
@@ -27,15 +34,15 @@ export default defineNuxtConfig({
         // sepia: "monokai",
       },
     },
-
-    markdown: {
-      remarkPlugins: {},
-      rehypePlugins: {
-        'rehype-autolink-headings': false,
-      },
+  },
+  svgo: {
+    defaultImport: 'component',
+  },
+  googleFonts: {
+    families: {
+      'Public+Sans': [300, 400, 500, 600],
     },
   },
-
   vite: {
     resolve: {
       alias: {
@@ -43,10 +50,5 @@ export default defineNuxtConfig({
         '@': resolve(__dirname, '../src'),
       },
     },
-  },
-
-  build: {
-    // @see https://github.com/tailwindlabs/headlessui/discussions/1545#discussioncomment-2871517
-    transpile: ['@headlessui/vue'],
   },
 })
