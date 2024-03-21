@@ -1,5 +1,5 @@
 import { it, test, describe, expect, vi } from 'vitest'
-import { h } from 'vue'
+import { h } from 'vue-demi'
 import { mountDefault } from '@tests/helpers.js'
 
 describe('Scoped Slots', () => {

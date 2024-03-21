@@ -1,5 +1,5 @@
 import { it, describe, expect } from 'vitest'
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue-demi'
 import { selectWithProps } from '@tests/helpers.js'
 
 describe('Components API', () => {
