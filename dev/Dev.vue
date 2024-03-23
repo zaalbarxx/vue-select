@@ -1,13 +1,32 @@
+<script lang="ts" setup>
+import StyledComboBox from '@/components/ComboBox/StyledComboBox.vue'
+import ComboBoxOption from '@/components/ComboBox/ComboBoxOption.vue'
+import ComboBox from '@/components/ComboBox/ComboBox.vue'
+import ComboBoxMenu from '@/components/ComboBox/ComboBoxMenu.vue'
+import ComboBoxButton from '@/components/ComboBox/ComboBoxButton.vue'
+import ComboBoxInput from '@/components/ComboBox/ComboBoxInput.vue'
+import { countriesAndCodes } from '@docs/assets/static/data'
+import { ref } from 'vue'
+
+const selected = ref<{
+  styled: { id: string; label: string } | null
+  default: { id: string; label: string } | null
+}>({
+  styled: null,
+  default: null,
+})
+</script>
+
 <template>
   <div class="flex flex-col items-center space-y-10 justify-center pt-40">
     <StyledComboBox
       :label="({ label }) => label"
-      v-model="selected"
-      :options="config.options"
+      v-model="selected.styled"
+      :options="countriesAndCodes"
     >
       <ComboBoxOption
-        @click="selected = country"
-        v-for="country in config.options"
+        @click="selected.styled = country"
+        v-for="country in countriesAndCodes"
         :key="country.id"
         :class="['px-2 py-1']"
         :value="country"
@@ -25,7 +44,7 @@
         class="px-2 border flex rounded items-center justify-center h-12 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
       >
         <div class="flex-1">
-          {{ selected?.label }}
+          {{ selected.default?.label }}
         </div>
         <div>
           <svg
@@ -50,7 +69,7 @@
       >
         <ComboBoxOption
           @click="selected = country"
-          v-for="country in config.options"
+          v-for="country in countriesAndCodes"
           as="button"
           :key="country.id"
           :class="['px-2 py-1 flex text-left hover:bg-gray-100 w-full']"
@@ -65,35 +84,3 @@
     </ComboBox>
   </div>
 </template>
-
-<script>
-import countries from '../docs/.vuepress/data/countryCodes.js'
-import StyledComboBox from '@/components/ComboBox/StyledComboBox.vue'
-import ComboBoxOption from '@/components/ComboBox/ComboBoxOption.vue'
-import ComboBox from '@/components/ComboBox/ComboBox.vue'
-import ComboBoxMenu from '@/components/ComboBox/ComboBoxMenu.vue'
-import ComboBoxButton from '@/components/ComboBox/ComboBoxButton.vue'
-import ComboBoxInput from '@/components/ComboBox/ComboBoxInput.vue'
-
-export default {
-  components: {
-    ComboBoxInput,
-    ComboBoxButton,
-    ComboBoxMenu,
-    ComboBox,
-    ComboBoxOption,
-    StyledComboBox,
-  },
-  data: () => ({
-    selected: {
-      styled: null,
-      composed: null,
-    },
-    open: false,
-
-    config: {
-      options: countries,
-    },
-  }),
-}
-</script>
