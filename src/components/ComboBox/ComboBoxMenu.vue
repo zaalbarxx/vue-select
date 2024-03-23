@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineProps, inject } from 'vue'
-import { ListBoxInjectionKey } from '@/keys'
-import type { InjectedListBoxProps } from '@/components/ListBox/ListBox.vue'
+import { ListBoxKey } from '@/keys'
 
 withDefaults(
   defineProps<{
@@ -9,10 +8,10 @@ withDefaults(
   }>(),
   {
     as: 'div',
-  }
+  },
 )
 
-const listBoxProps = inject<InjectedListBoxProps>(ListBoxInjectionKey)
+const listBoxProps = inject(ListBoxKey)
 </script>
 
 <template>

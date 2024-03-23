@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, defineProps, inject } from 'vue'
-import type { InjectedListBoxProps } from '@/components/ListBox/ListBox.vue'
-import { ListBoxInjectionKey } from '@/keys'
+import { ListBoxKey } from '@/keys'
 
 const props = withDefaults(
   defineProps<{
@@ -10,10 +9,10 @@ const props = withDefaults(
   }>(),
   {
     as: 'div',
-  }
+  },
 )
 
-const listBoxProps = inject<InjectedListBoxProps>(ListBoxInjectionKey)
+const listBoxProps = inject(ListBoxKey)
 
 const isSelected = computed(() => {
   return listBoxProps?.value.modelValue === props.value
@@ -21,7 +20,7 @@ const isSelected = computed(() => {
 </script>
 
 <template>
-  <Component :is="as">
+  <Component :is="as" @click="() => listBoxProps.setModelValue(value)">
     <slot v-bind="{ isSelected }"></slot>
   </Component>
 </template>
