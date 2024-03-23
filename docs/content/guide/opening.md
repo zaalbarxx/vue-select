@@ -3,12 +3,9 @@
 By default, the dropdown will open anytime the underlying search input has focus. The dropdown will
 open when clicked, or when it has received focus when tabbing through inputs.
 
-## Customizing Dropdown Behaviour <Badge text="v3.12.0+" />
+## Customizing Dropdown Behaviour <Badge text="v4+" />
 
-The `dropdownShouldOpen` prop allows for full customization of the open/close behaviour. The prop
-accepts a `function` that should return a `boolean` value. The returned boolean value will be used
-to determine if the dropdown should be `open`/`true` or `false`/`closed`. The function receives the
-instance of the component as the only argument.
+The `open` prop can control showing and hiding the dropdown menu from a parent component. If this prop is set, the component will always use the value of `props.open` to handle showing and hiding the dropdown. Vue Select will emit the `update:open` when the prop value should change, so you can use `<VueSelect v-model:open="open" />` to have control over the `open` state while preserving default behaviour.
 
 #### Example: Open the dropdown when search text is present
 --- 
