@@ -8,7 +8,7 @@ const props = withDefaults(
   }>(),
   {
     type: 'note',
-  }
+  },
 )
 
 const styles = computed(() => {
@@ -33,7 +33,7 @@ const styles = computed(() => {
   <div :class="['my-8 flex rounded-3xl p-6', styles.container]">
     <!--    <IconComponent class="h-8 w-8 flex-none" />-->
     <div class="ml-4 flex-auto">
-      <p :class="['m-0 font-display text-xl', styles.title]">
+      <p :class="['m-0 font-display font-bold text-xl', styles.title]">
         {{ title }}
       </p>
       <div :class="['prose mt-2.5', styles.body]">

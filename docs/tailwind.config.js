@@ -30,8 +30,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        display: ['Lexend', ...defaultTheme.fontFamily.sans],
+        sans: ['Public Sans', 'Inter var', 'Inter', 'sans-serif'],
+        display: ['Satoshi', 'Public Sans', 'Inter var', 'Inter', 'sans-serif'],
       },
       maxWidth: {
         '8xl': '88rem',

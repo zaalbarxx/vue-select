@@ -29,7 +29,7 @@ import {
           />
           <div class="relative">
             <p
-              class="font-display inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text text-5xl tracking-tight text-transparent"
+              class="font-display inline bg-gradient-to-r from-indigo-200 via-sky-400 font-bold to-indigo-200 bg-clip-text text-5xl tracking-tight text-transparent"
             >
               The complete Vue.js combobox solution.
             </p>

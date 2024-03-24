@@ -15,7 +15,9 @@ defineProps<{
     />
     <div class="relative overflow-hidden rounded-xl p-6">
       <slot name="icon" />
-      <h2 class="mt-4 font-display text-base text-slate-900 dark:text-white">
+      <h2
+        class="mt-4 font-display font-bold text-base text-slate-900 dark:text-white"
+      >
         <NuxtLink :to="href">
           <span class="absolute -inset-px rounded-xl" />
           {{ title }}

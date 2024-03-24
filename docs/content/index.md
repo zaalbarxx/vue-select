@@ -12,7 +12,7 @@ typeahead select. They're a staple on the web, and they're notoriously tough to 
 :::
 
 Vue Select provides a default template that fits most use cases. The component is designed
-to be as lightweight as possible,while maintaining high standards for accessibility, developer
+to be as lightweight as possible, while maintaining high standards for accessibility, developer
 experience, and customization.
 
 :::quick-links
