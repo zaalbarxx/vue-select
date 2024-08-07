@@ -14,6 +14,7 @@ describe('Labels', () => {
   })
 
   it('will console.warn when options contain objects without a valid label key', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     const spy = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const Select = selectWithProps({
       options: [{}],

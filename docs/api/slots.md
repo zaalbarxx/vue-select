@@ -164,6 +164,21 @@ This slot doesn't exist if `selected-option-container` is implemented.
 <SlotSelectedOption />
 <<< @/.vuepress/components/SlotSelectedOption.vue
 
+## `selected-options-container`
+
+This is the root element above `selected-option-container` slot. It allows to customize rendering of the whole options container,
+for example rendering only first select value along with count of rest of selected options
+
+- `selectedValue {Array}` - List of selected options
+- `select {Function}` - Method used to select a given option
+- `deselect {Function}` - Method used to deselect a given option when `multiple` is true
+- `disabled {Boolean}` - Determine if the component is disabled
+- `multiple {Boolean}` - If the component supports the selection of multiple values
+
+<SlotSelectedOptionContainer />
+<<< @/.vuepress/components/SlotSelectedOptionsContainer.vue
+
+
 ## `selected-option-container`
 
 This is the root element where `v-for="option in selectedValue"`. Most of the time you'll want to

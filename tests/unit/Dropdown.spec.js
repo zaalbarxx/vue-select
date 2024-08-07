@@ -3,7 +3,6 @@ import { mountDefault, selectWithProps } from '@tests/helpers.js'
 import OpenIndicator from '@/components/OpenIndicator.vue'
 import VueSelect from '@/components/Select.vue'
 import { shallowMount } from '@vue/test-utils'
-import VueSelect from '../../src/components/Select.vue'
 
 const preventDefault = vi.fn()
 
@@ -47,7 +46,7 @@ describe('Toggling Dropdown', () => {
 
   it('will open the dropdown when: the input has focus, space is pressed, menu is closed', async () => {
     const Select = mountDefault()
-    const input = Select.findComponent({ ref: 'search' })
+    const input = Select.find({ ref: 'search' })
 
     input.trigger('focus')
     Select.vm.open = false
@@ -59,7 +58,7 @@ describe('Toggling Dropdown', () => {
 
   it('should open dropdown on alphabetic input', async () => {
     const Select = mountDefault()
-    const input = Select.findComponent({ ref: 'search' })
+    const input = Select.find({ ref: 'search' })
 
     input.element.value = 'a'
     input.trigger('input')
@@ -70,7 +69,7 @@ describe('Toggling Dropdown', () => {
 
   it('should open dropdown on numeric input', async () => {
     const Select = shallowMount(VueSelect)
-    const input = Select.findComponent({ ref: 'search' })
+    const input = Select.find({ ref: 'search' })
 
     input.element.value = 1
     input.trigger('input')
@@ -150,7 +149,6 @@ describe('Toggling Dropdown', () => {
 
   it('will close the dropdown on escape, if search is empty', () => {
     const Select = selectWithProps()
-    const spy = vi.spyOn(Select.vm.$refs.search, 'blur')
 
     Select.vm.open = true
     Select.vm.onEscape()

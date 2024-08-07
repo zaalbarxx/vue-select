@@ -8,6 +8,7 @@ describe('When reduce prop is defined', () => {
     const Select = mountDefault()
     expect(Select.vm.isReducingValues).toBeFalsy()
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await Select.setProps({ reduce: () => {} })
     expect(Select.vm.isReducingValues).toBeTruthy()
   })

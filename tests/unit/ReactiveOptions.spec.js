@@ -22,6 +22,7 @@ describe('Reset on options change', () => {
     })
 
     it('will yell at you if resetOnOptionsChange is not a function or boolean', () => {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       spy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
       mountDefault({ resetOnOptionsChange: 1 })

@@ -85,7 +85,7 @@ it('should not move the pointer visually up the list on up arrow keyUp when drop
 
   Select.vm.typeAheadPointer = 1
 
-  Select.findComponent({ ref: 'search' }).trigger('keydown.up')
+  Select.find({ ref: 'search' }).trigger('keydown.up')
 
   expect(Select.vm.typeAheadPointer).toEqual(1)
 })
@@ -95,7 +95,7 @@ it('should not move the pointer visually down the list on down arrow keyUp when 
 
   Select.vm.typeAheadPointer = 1
 
-  Select.findComponent({ ref: 'search' }).trigger('keydown.down')
+  Select.find({ ref: 'search' }).trigger('keydown.down')
 
   expect(Select.vm.typeAheadPointer).toEqual(1)
 })

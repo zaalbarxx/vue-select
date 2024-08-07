@@ -159,4 +159,24 @@ describe('Scoped Slots', () => {
       'filteredOptions',
     ])
   })
+
+  test('selected-options-container slot props', async () => {
+    const container = vi.fn()
+    const Select = mountDefault(
+      {},
+      {
+        slots: { 'selected-options-container': container },
+      }
+    )
+    Select.vm.open = true
+    await Select.vm.$nextTick()
+    expect(Object.keys(container.mock.calls[0][0])).toEqual([
+      'selectedValue',
+      'getOptionLabel',
+      'disabled',
+      'select',
+      'deselect',
+      'multiple',
+    ])
+  })
 })

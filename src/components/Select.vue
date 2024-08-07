@@ -17,37 +17,48 @@
     >
       <div ref="selectedOptions" class="vs__selected-options">
         <slot
-          v-for="(option, i) in selectedValue"
-          name="selected-option-container"
-          :option="normalizeOptionForSlot(option)"
+          name="selected-options-container"
+          :selectedValue="selectedValue"
+          :getOptionLabel="getOptionLabel"
+          :disabled="disabled"
+          :select="select"
           :deselect="deselect"
           :multiple="multiple"
-          :disabled="disabled"
         >
-          <span :key="getOptionKey(option)" class="vs__selected">
-            <slot
-              name="selected-option"
-              v-bind="normalizeOptionForSlot(option)"
-            >
-              {{ getOptionLabel(option) }}
-            </slot>
-            <button
-              v-if="multiple"
-              :ref="(el) => (deselectButtons[i] = el)"
-              :disabled="disabled"
-              type="button"
-              class="vs__deselect"
-              :title="`Deselect ${getOptionLabel(option)}`"
-              :aria-label="`Deselect ${getOptionLabel(option)}`"
-              @click="deselect(option)"
-            >
-              <component :is="childComponents.Deselect" />
-            </button>
-          </span>
+          <slot
+            v-for="(option, i) in selectedValue"
+            name="selected-option-container"
+            :option="normalizeOptionForSlot(option)"
+            :deselect="deselect"
+            :multiple="multiple"
+            :disabled="disabled"
+          >
+            <span :key="getOptionKey(option)" class="vs__selected">
+              <slot
+                name="selected-option"
+                v-bind="normalizeOptionForSlot(option)"
+              >
+                {{ getOptionLabel(option) }}
+              </slot>
+              <button
+                v-if="multiple"
+                :ref="(el) => (deselectButtons[i] = el)"
+                :disabled="disabled"
+                type="button"
+                class="vs__deselect"
+                :title="`Deselect ${getOptionLabel(option)}`"
+                :aria-label="`Deselect ${getOptionLabel(option)}`"
+                @click="deselect(option)"
+              >
+                <component :is="childComponents.Deselect" />
+              </button>
+            </span>
+          </slot>
         </slot>
 
         <slot name="search" v-bind="scope.search">
           <input
+            ref="search"
             class="vs__search"
             v-bind="scope.search.attributes"
             v-on="scope.search.events"
@@ -338,6 +349,7 @@ export default {
      */
     selectable: {
       type: Function,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       default: (option) => true,
     },
 
@@ -358,7 +370,7 @@ export default {
       type: Function,
       default(option) {
         if (typeof option === 'object') {
-          if (!option.hasOwnProperty(this.label)) {
+          if (!Object.prototype.hasOwnProperty.call(option, this.label)) {
             return console.warn(
               `[vue-select warn]: Label key "option.${this.label}" does not` +
                 ` exist in options object ${JSON.stringify(option)}.\n` +
@@ -395,7 +407,7 @@ export default {
         }
 
         try {
-          return option.hasOwnProperty('id')
+          return Object.prototype.hasOwnProperty.call(option, 'id')
             ? option.id
             : sortAndStringify(option)
         } catch (e) {
@@ -626,6 +638,7 @@ export default {
        * @param vm {VueSelect}
        * @return {Object}
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       default: (map, vm) => map,
     },
 
@@ -1066,6 +1079,7 @@ export default {
      * @param  {Object|String} option
      * @return {void}
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onAfterSelect(option) {
       if (this.closeOnSelect) {
         this.open = !this.open
@@ -1346,10 +1360,13 @@ export default {
 
       const defaults = {
         //  backspace
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         8: (e) => this.maybeDeleteValue(),
         //  tab
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         9: (e) => this.onTab(),
         //  esc
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         27: (e) => this.onEscape(),
         //  up.prevent
         38: (e) => {
