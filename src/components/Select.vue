@@ -24,6 +24,7 @@
           :select="select"
           :deselect="deselect"
           :multiple="multiple"
+          :registerDeselectButton="registerDeselectButton"
         >
           <slot
             v-for="(option, i) in selectedValue"
@@ -42,7 +43,7 @@
               </slot>
               <button
                 v-if="multiple"
-                :ref="(el) => (deselectButtons[i] = el)"
+                :ref="(el) => registerDeselectButton(el, i)"
                 :disabled="disabled"
                 type="button"
                 class="vs__deselect"
@@ -1022,7 +1023,14 @@ export default {
         this.$data._value = this.findOptionFromReducedValue(value)
       }
     },
-
+    /**
+     * Registers deselect button ref to array of deselect buttons
+     * @param  {Object|String} value
+     * @return {void}
+     */
+    registerDeselectButton(el, i) {
+      this.deselectButtons[i] = el
+    },
     /**
      * Select or deselect a given option.
      * Allow deselect if clearable or if not the only selected option.

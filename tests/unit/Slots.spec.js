@@ -177,6 +177,7 @@ describe('Scoped Slots', () => {
       'select',
       'deselect',
       'multiple',
+      'registerDeselectButton',
     ])
   })
 })

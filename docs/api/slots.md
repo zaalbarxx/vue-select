@@ -170,10 +170,12 @@ This is the root element above `selected-option-container` slot. It allows to cu
 for example rendering only first select value along with count of rest of selected options
 
 - `selectedValue {Array}` - List of selected options
+- `getOptionLabel {Function}` - Function which resolves option's label
 - `select {Function}` - Method used to select a given option
 - `deselect {Function}` - Method used to deselect a given option when `multiple` is true
 - `disabled {Boolean}` - Determine if the component is disabled
 - `multiple {Boolean}` - If the component supports the selection of multiple values
+- `registerDeselectButton {Function}` - Function which adds ref to list of deselect buttons
 
 <SlotSelectedOptionContainer />
 <<< @/.vuepress/components/SlotSelectedOptionsContainer.vue
