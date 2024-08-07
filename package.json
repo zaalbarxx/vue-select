@@ -1,6 +1,6 @@
 {
     "name": "@zaalbarxx/vue-select",
-    "version": "4.0.2",
+    "version": "4.0.4",
     "description": "Everything you wish the HTML <select> element could do, wrapped up into a lightweight, extensible Vue component.",
     "author": "Jeff Sagal <sagalbot@gmail.com>",
     "homepage": "https://vue-select.org",
@@ -16,7 +16,8 @@
     "exports": {
         ".": {
             "import": "./dist/vue-select.es.js",
-            "require": "./dist/vue-select.umd.js"
+            "require": "./dist/vue-select.umd.js",
+            "types": "./dist/index.d.ts"
         },
         "./dist/vue-select.css": {
             "import": "./dist/vue-select.css",
@@ -33,7 +34,7 @@
         "semantic-release": "semantic-release",
         "commit": "git-cz",
         "dev": "vite",
-        "build": "vue-tsc --noEmit && vite build",
+        "build": "vue-tsc --noEmit && vite build && copyfiles -u 1 src/index.d.ts dist",
         "preview": "vite preview --port 5050",
         "test": "vitest --environment jsdom",
         "coverage": "vitest --run --coverage --environment jsdom --silent",
@@ -62,6 +63,7 @@
         "bundlewatch": "^0.3.3",
         "c8": "^7.11.3",
         "commitizen": "^4.2.5",
+        "copyfiles": "^2.4.1",
         "coveralls": "^3.1.1",
         "cross-env": "^7.0.3",
         "cz-conventional-changelog": "3.3.0",

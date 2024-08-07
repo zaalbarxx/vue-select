@@ -1,4 +1,4 @@
 import VueSelect from './components/Select.vue'
-export * as ChildComponents from './components/childComponents'
+import Components from '@/components/childComponents'
 
-export default VueSelect
+export { VueSelect as default, Components as ChildComponents }

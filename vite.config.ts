@@ -25,6 +25,7 @@ export default defineConfig({
       external: ['vue'],
       output: {
         globals: { vue: 'Vue' },
+        exports: "named",
         assetFileNames(chunk): string {
           if (chunk.name === 'style.css') {
             return 'vue-select.css'
