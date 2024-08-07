@@ -19,6 +19,7 @@ describe('Moving the Typeahead Pointer', () => {
   it('should move the pointer visually up the list on up arrow keyUp', () => {
     const Select = mountDefault()
 
+    Select.vm.open = true
     Select.vm.typeAheadPointer = 1
 
     Select.get('input').trigger('keydown.up')
@@ -29,6 +30,7 @@ describe('Moving the Typeahead Pointer', () => {
   it('should move the pointer visually down the list on down arrow keyUp', () => {
     const Select = mountDefault()
 
+    Select.vm.open = true
     Select.vm.typeAheadPointer = 1
 
     Select.get('input').trigger('keydown.down')
@@ -76,4 +78,24 @@ describe('Moving the Typeahead Pointer', () => {
 
     expect(Select.vm.typeAheadPointer).toEqual(2)
   })
+})
+
+it('should not move the pointer visually up the list on up arrow keyUp when dropdown is not open', () => {
+  const Select = mountDefault()
+
+  Select.vm.typeAheadPointer = 1
+
+  Select.findComponent({ ref: 'search' }).trigger('keydown.up')
+
+  expect(Select.vm.typeAheadPointer).toEqual(1)
+})
+
+it('should not move the pointer visually down the list on down arrow keyUp when dropdown is not open', () => {
+  const Select = mountDefault()
+
+  Select.vm.typeAheadPointer = 1
+
+  Select.findComponent({ ref: 'search' }).trigger('keydown.down')
+
+  expect(Select.vm.typeAheadPointer).toEqual(1)
 })

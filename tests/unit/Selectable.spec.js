@@ -36,6 +36,7 @@ describe('Selectable prop', () => {
       selectable: (option) => option !== 'two',
     })
 
+    Select.vm.open = true
     Select.vm.typeAheadPointer = 1
 
     await Select.get('input').trigger('keydown.down')
@@ -49,6 +50,7 @@ describe('Selectable prop', () => {
       selectable: (option) => option !== 'two',
     })
 
+    Select.vm.open = true
     Select.vm.typeAheadPointer = 2
 
     await Select.get('input').trigger('keydown.up')

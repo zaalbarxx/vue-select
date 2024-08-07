@@ -1,7 +1,9 @@
 import { it, describe, expect, vi, afterEach } from 'vitest'
-import { selectWithProps } from '@tests/helpers.js'
+import { mountDefault, selectWithProps } from '@tests/helpers.js'
 import OpenIndicator from '@/components/OpenIndicator.vue'
 import VueSelect from '@/components/Select.vue'
+import { shallowMount } from '@vue/test-utils'
+import VueSelect from '../../src/components/Select.vue'
 
 const preventDefault = vi.fn()
 
@@ -40,6 +42,40 @@ describe('Toggling Dropdown', () => {
     const selectedTag = Select.find('.vs__selected').element
 
     Select.vm.toggleDropdown(clickEvent(selectedTag))
+    expect(Select.vm.open).toEqual(true)
+  })
+
+  it('will open the dropdown when: the input has focus, space is pressed, menu is closed', async () => {
+    const Select = mountDefault()
+    const input = Select.findComponent({ ref: 'search' })
+
+    input.trigger('focus')
+    Select.vm.open = false
+    input.trigger('keypress.space')
+
+    expect(Select.vm.open).toEqual(true)
+    expect(Select.vm.search).toEqual('')
+  })
+
+  it('should open dropdown on alphabetic input', async () => {
+    const Select = mountDefault()
+    const input = Select.findComponent({ ref: 'search' })
+
+    input.element.value = 'a'
+    input.trigger('input')
+    await Select.vm.$nextTick()
+
+    expect(Select.vm.open).toEqual(true)
+  })
+
+  it('should open dropdown on numeric input', async () => {
+    const Select = shallowMount(VueSelect)
+    const input = Select.findComponent({ ref: 'search' })
+
+    input.element.value = 1
+    input.trigger('input')
+    await Select.vm.$nextTick()
+
     expect(Select.vm.open).toEqual(true)
   })
 
@@ -119,7 +155,7 @@ describe('Toggling Dropdown', () => {
     Select.vm.open = true
     Select.vm.onEscape()
 
-    expect(spy).toHaveBeenCalled()
+    expect(Select.vm.open).toEqual(false)
   })
 
   it('should remove existing search text on escape keydown', () => {
