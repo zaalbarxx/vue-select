@@ -600,7 +600,7 @@ Sets the class of the underlying dropdown menu element upon showing.
 
 ```js
 dropdownMenuClass: {
-  type: String,
+  type: [String, Array, Object],
 }
 ```
 

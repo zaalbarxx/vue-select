@@ -708,12 +708,11 @@ export default {
 
     /**
      * Sets the class of the underlying dropdown menu element upon showing.
-     * @type {String}
      * @default {null}
      */
     // eslint-disable-next-line vue/require-default-prop
     dropdownMenuClass: {
-      type: String,
+      type: [String, Array, Object],
     }
   },
 
