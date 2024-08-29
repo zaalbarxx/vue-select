@@ -2,8 +2,8 @@ import { ComponentOptions, DefineComponent } from 'vue'
 import { ExtendedVue } from 'vue/types/vue'
 
 export default VueSelect
-export const VueSelect: VueSelectConstructor
-export const ChildComponents: ChildComponents
+export declare const VueSelect: VueSelectConstructor
+export declare const ChildComponents: ChildComponents
 
 export type OptionConsumer<T = void> = (option: VueSelectOption) => T
 

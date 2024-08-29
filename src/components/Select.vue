@@ -102,6 +102,7 @@
         :key="`vs${uid}__listbox`"
         v-append-to-body
         class="vs__dropdown-menu"
+        :class="dropdownMenuClass"
         role="listbox"
         tabindex="-1"
         @mousedown.prevent="onMousedown"
@@ -704,6 +705,16 @@ export default {
       type: [String, Number],
       default: () => uniqueId(),
     },
+
+    /**
+     * Sets the class of the underlying dropdown menu element upon showing.
+     * @type {String}
+     * @default {null}
+     */
+    // eslint-disable-next-line vue/require-default-prop
+    dropdownMenuClass: {
+      type: String,
+    }
   },
 
   data() {

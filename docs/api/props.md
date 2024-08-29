@@ -594,6 +594,16 @@ uid: {
 ```
 
 
+## dropdownMenuClass
+
+Sets the class of the underlying dropdown menu element upon showing.
+
+```js
+dropdownMenuClass: {
+  type: String,
+}
+```
+
 ## value
 
 Contains the currently selected value. Very similar to a
