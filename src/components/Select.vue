@@ -24,6 +24,7 @@
           :select="select"
           :deselect="deselect"
           :multiple="multiple"
+          :search="scope.search"
           :registerDeselectButton="registerDeselectButton"
         >
           <slot

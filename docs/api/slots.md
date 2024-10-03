@@ -175,6 +175,7 @@ for example rendering only first select value along with count of rest of select
 - `deselect {Function}` - Method used to deselect a given option when `multiple` is true
 - `disabled {Boolean}` - Determine if the component is disabled
 - `multiple {Boolean}` - If the component supports the selection of multiple values
+- `search {Object}` - search scope with `attributes` and `events` properties which can be bound to manually created search input
 - `registerDeselectButton {Function}` - Function which adds ref to list of deselect buttons
 
 <SlotSelectedOptionContainer />
