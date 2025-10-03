@@ -29,55 +29,55 @@ interface CalculatedPosition {
 }
 
 export interface VueSelectProps {
-  value: VueSelectOption
-  components: {
+  value?: VueSelectOption
+  components?: {
     [key in ChildComponentName]?: DefineComponent | ComponentOptions<Vue>
   }
-  options: VueSelectOption[]
-  disabled: boolean
-  clearable: boolean
-  searchable: boolean
-  multiple: boolean
-  placeholder: string
-  transition: string
-  clearSearchOnSelect: boolean
-  closeOnSelect: boolean
-  label: string
-  autocomplete: string
-  reduce: OptionConsumer<any>
-  selectable: OptionConsumer<boolean>
-  getOptionLabel: OptionConsumer<string>
-  getOptionKey: OptionConsumer<string>
+  options?: VueSelectOption[]
+  disabled?: boolean
+  clearable?: boolean
+  searchable?: boolean
+  multiple?: boolean
+  placeholder?: string
+  transition?: string
+  clearSearchOnSelect?: boolean
+  closeOnSelect?: boolean
+  label?: string
+  autocomplete?: string
+  reduce?: OptionConsumer<any>
+  selectable?: OptionConsumer<boolean>
+  getOptionLabel?: OptionConsumer<string>
+  getOptionKey?: OptionConsumer<string>
   /** @deprecated since v3.3 */
-  onTab: () => void
-  taggable: boolean
-  tabindex: number | null
-  pushTags: boolean
-  filterable: boolean
-  filterBy: (option: VueSelectOption, label: string, search: string) => boolean
-  filter: (
+  onTab?: () => void
+  taggable?: boolean
+  tabindex?: number | null
+  pushTags?: boolean
+  filterable?: boolean
+  filterBy?: (option: VueSelectOption, label: string, search: string) => boolean
+  filter?: (
     options: readonly VueSelectOption[],
     search: string
   ) => VueSelectOption[]
-  createOption: (option: string) => VueSelectOption
-  resetOnOptionsChange:
+  createOption?: (option: string) => VueSelectOption
+  resetOnOptionsChange?:
     | boolean
     | ((
         newOptions: readonly VueSelectOption[],
         oldOptions: readonly VueSelectOption[],
         selectedValue: readonly VueSelectOption[]
       ) => boolean)
-  clearSearchOnBlur: (parameters: ClearSearchOnBlurParameters) => boolean
-  noDrop: boolean
-  inputId: string | null
-  dir: 'auto' | 'ltr' | 'rtl'
+  clearSearchOnBlur?: (parameters: ClearSearchOnBlurParameters) => boolean
+  noDrop?: boolean
+  inputId?: string | null
+  dir?: 'auto' | 'ltr' | 'rtl'
   /** @deprecated since v3.3 - use selectOnKeyCodes instead */
-  selectOnTab: boolean
-  selectOnKeyCodes: number[]
-  searchInputQuerySelector: string
-  mapKeydown: (map: KeyEventMap, vm: VueSelectInstance) => KeyEventMap
-  appendToBody: boolean
-  calculatePosition: (
+  selectOnTab?: boolean
+  selectOnKeyCodes?: number[]
+  searchInputQuerySelector?: string
+  mapKeydown?: (map: KeyEventMap, vm: VueSelectInstance) => KeyEventMap
+  appendToBody?: boolean
+  calculatePosition?: (
     dropdownList: HTMLUListElement,
     component: VueSelectInstance,
     position: CalculatedPosition
@@ -85,14 +85,15 @@ export interface VueSelectProps {
   ) => void | UnbindPositionCallback
 
   // in pointerScroll mixin:
-  autoscroll: boolean
+  autoscroll?: boolean
 
   // in ajax mixin:
-  loading: boolean
+  loading?: boolean
 
-  dropdownShouldOpen: (vSelect: VueSelectInstance) => boolean
-  deselectFromDropdown: boolean
-  uid: string | number
+  dropdownShouldOpen?: (vSelect: VueSelectInstance) => boolean
+  deselectFromDropdown?: boolean
+  uid?: string | number
+  dropdownMenuClass?: string | array | Record<any, any>
 }
 
 export interface VueSelectData {
