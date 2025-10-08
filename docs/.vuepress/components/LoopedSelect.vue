@@ -1,19 +1,23 @@
 <template>
   <table>
-    <tr>
-      <th>Name</th>
-      <th>Country</th>
-    </tr>
-    <tr v-for="person in people" :key="person.name">
-      <td>{{ person.name }}</td>
-      <td>
-        <v-select
-          :options="options"
-          :value="person.country"
-          @input="(country) => updateCountry(person, country)"
-        />
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="person in people" :key="person.name">
+        <td>{{ person.name }}</td>
+        <td>
+          <v-select
+            :options="options"
+            :value="person.country"
+            @input="(country) => updateCountry(person, country)"
+          />
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 

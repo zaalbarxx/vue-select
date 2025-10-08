@@ -1,6 +1,6 @@
 {
     "name": "@zaalbarxx/vue-select",
-    "version": "4.0.9-beta.2",
+    "version": "4.0.9-beta.3",
     "description": "Everything you wish the HTML <select> element could do, wrapped up into a lightweight, extensible Vue component.",
     "author": "Jeff Sagal <sagalbot@gmail.com>",
     "homepage": "https://vue-select.org",
@@ -16,14 +16,14 @@
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
+            "types": "./dist/index.d.ts",
             "import": "./dist/vue-select.es.js",
-            "require": "./dist/vue-select.umd.js",
-            "types": "./dist/index.d.ts"
+            "require": "./dist/vue-select.umd.js"
         },
         "./dist/vue-select.css": {
+            "style": "./dist/vue-select.css",
             "import": "./dist/vue-select.css",
-            "require": "./dist/vue-select.css",
-            "style": "./dist/vue-select.css"
+            "require": "./dist/vue-select.css"
         }
     },
     "private": false,
@@ -85,6 +85,7 @@
             "path": "./node_modules/cz-conventional-changelog"
         }
     },
+    "packageManager": "yarn@1.22.22",
     "bundlewatch": {
         "files": [
             {

@@ -28,5 +28,3 @@ displays _Sorry, no matching options_. You can add more contextual information b
 in your own apps.
 
 <BetterNoOptions />
-
-<<< @/.vuepress/components/BetterNoOptions.vue

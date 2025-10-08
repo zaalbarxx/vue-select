@@ -12,6 +12,4 @@ method with the `country` and the `person` object.
 
 <LoopedSelect />
 
-<<< @/.vuepress/components/LoopedSelect.vue
-
 

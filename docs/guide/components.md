@@ -4,8 +4,8 @@
 Vue Select utilizes child components throughout, and exposes an API to overwrite these components 
 with your own, using the `components` `{Object}` prop. The object provided to the `components` prop 
 will be merged with Vue Select's default components. 
-                   
-<<< @/../src/components/childComponents.js{4-7}
+
+@[code js{4-7}](@src/components/childComponents.js)
 
 You can override the value of any of these keys with your own components.
 

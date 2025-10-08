@@ -14,5 +14,3 @@ You can use the `filterable` boolean to turn off Vue Select's filtering, and the
 `search` event to use the current search query in the parent component.
 
 <Paginated />
-
-<<< @/.vuepress/components/Paginated.vue

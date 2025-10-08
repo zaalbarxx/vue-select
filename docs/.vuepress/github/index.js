@@ -1,5 +1,5 @@
-const clientDynamicModules = require('./clientDynamicModules')
+import clientDynamicModules from './clientDynamicModules';
 
-module.exports = {
+export default {
   clientDynamicModules: async () => await clientDynamicModules(),
 }

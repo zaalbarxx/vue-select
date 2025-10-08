@@ -19,5 +19,3 @@ important to wait for `$nextTick` here so that the DOM elements have been insert
 the scroll position.
 
 <InfiniteScroll />
-
-<<< @/.vuepress/components/InfiniteScroll.vue

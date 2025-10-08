@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { SPONSORS } from '@dynamic/constants'
 import { format } from 'date-fns'
 
 export default {

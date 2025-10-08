@@ -7,9 +7,7 @@
  in this array will prevent the default event action and trigger a typeahead select. By default, 
  it's just `[13]` for return. For example, maybe you want to tag on a comma keystroke:
  
-<TagOnComma /> 
- 
-<<< @/.vuepress/components/TagOnComma.vue
+<TagOnComma />
 
 ## mapKeyDown <Badge text="v3.3.0+" />
 
@@ -68,6 +66,4 @@ so `map-keydown` will always take precedence.
 This is example listens for the `@` key, and autocompletes an email address with `@gmail.com`.
 
 <CustomHandlers />
-
-<<< @/.vuepress/components/CustomHandlers.vue
 

@@ -31,8 +31,6 @@ This object will be passed to `selectable`, so we can check if the author should
 
 <UnselectableExample />
 
-<<< @/.vuepress/components/UnselectableExample.vue{6}
-
 ## Limiting the Number of Selections
 
 `selectable` can also be used a bit more creatively to limit the number selections that can be made 
@@ -40,5 +38,3 @@ within the component. In this case, the user can select any author, but may only
 of three books.
 
 <LimitSelectionQuantity />
-
-<<< @/.vuepress/components/LimitSelectionQuantity.vue{8}

@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import { CONTRIBUTORS } from '@dynamic/constants'
-
 export default {
   data: () => ({
     contributors: CONTRIBUTORS.filter(

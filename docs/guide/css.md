@@ -24,11 +24,9 @@ about [CSS Custom Properties.](https://developer.mozilla.org/en-US/docs/Web/CSS/
 
 <CssVariables style="margin-top: 1rem;" />
 
-<<< @/.vuepress/components/CssVariables.vue
-
 ### Available CSS Variables <Badge type="primary">3.18+</Badge>
 
-<<< @/../src/css/global/variables.css
+@[code scss](@src/css/global/variables.css)
 
 ## SCSS <Badge type="warning">Deprecated in v3.18</Badge>
 
@@ -46,7 +44,7 @@ into the SCSS, the files are located in `src/scss`. The variables listed below c
 All variables are implemented with `!default` in order to make them easier to override in your
 application.
 
-<<< @/../src/scss/global/_variables.scss
+@[code scss](@src/scss/global/_variables.scss)
 
 ## Overriding Default Styles
 
@@ -60,9 +58,7 @@ In order to override a default property in your app, you should add one level of
 easiest way to do this, is to add `.v-select` before the `vs__*` selector if you want to adjust all
 instances of Vue Select, or add your own classname if you just want to affect one.
 
-<CssSpecificity />  
-
-<<< @/.vuepress/components/CssSpecificity.vue
+<CssSpecificity />
 
 ## Dropdown Transition
 

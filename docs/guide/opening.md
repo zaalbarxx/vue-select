@@ -18,5 +18,3 @@ country has already been selected, we will display the dropdown right away.
 
 <OpenWhenSearchTextPresent />
 
-<<< @/.vuepress/components/OpenWhenSearchTextPresent.vue
-

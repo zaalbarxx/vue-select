@@ -1,9 +1,11 @@
-require('dotenv').config()
-const axios = require('axios')
-const { graphql } = require('@octokit/graphql')
+import dotenv from 'dotenv';
+import axios from 'axios';
+import { graphql } from '@octokit/graphql';
 
-module.exports = async () => ({
-  name: 'constants.js',
+dotenv.config();
+
+export default async () => ({
+  name: '@dynamic/constants.js',
   content: `
       export const SPONSORS = ${JSON.stringify(await getSponsors())};
       export const CONTRIBUTORS = ${JSON.stringify(await getContributors())};

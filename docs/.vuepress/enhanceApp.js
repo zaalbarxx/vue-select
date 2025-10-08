@@ -1,7 +1,8 @@
-import vSelect from '../../src/components/Select'
+import vSelect from '@/components/Select.vue'
 
-export default ({ Vue, options, router, siteData }) => {
-  Vue.component('v-select', vSelect)
+export default ({ app, options, router, siteData }) => {
+  console.log(vSelect);
+  app.component('v-select', vSelect)
 
   /**
    * Remove service workers.

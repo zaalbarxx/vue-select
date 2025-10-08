@@ -32,8 +32,6 @@ Otherwise content in this slot will affect it's positioning.
 - `deselect {function}` - function to deselect an option
 
 <SlotFooter />
-<<< @/.vuepress/components/SlotFooter.vue
-
 ## `header` <Badge text="3.8.0+" />
 
 Displayed at the top of the component, above `.vs__dropdown-toggle`.
@@ -45,8 +43,6 @@ Displayed at the top of the component, above `.vs__dropdown-toggle`.
 - `deselect {function}` - function to deselect an option
 
 <SlotHeader />
-<<< @/.vuepress/components/SlotHeader.vue
-
 ## `list-footer` <Badge text="3.8.0+" />
 
 Displayed as the last item in the dropdown. No content by default. Parent element is the `<ul>`,
@@ -58,8 +54,6 @@ so this slot should contain a root `<li>`.
 - `filteredOptions {array}` - options filtered by the search text
 
 <SlotListFooter />
-<<< @/.vuepress/components/SlotListFooter.vue
-
 ## `list-header` <Badge text="3.8.0+" />
 
 Displayed as the first item in the dropdown. No content by default. Parent element is the `<ul>`,
@@ -71,8 +65,6 @@ so this slot should contain a root `<li>`.
 - `filteredOptions {array}` - options filtered by the search text
 
 <SlotListHeader />
-<<< @/.vuepress/components/SlotListHeader.vue
-
 ## `no-options`
 
 The no options slot is displayed above `list-footer` in the dropdown when
@@ -83,8 +75,6 @@ The no options slot is displayed above `list-footer` in the dropdown when
 - `searching {boolean}` - is the component searching
 
 <SlotNoOptions />
-<<< @/.vuepress/components/SlotNoOptions.vue
-
 ## `open-indicator`
 
 The open indicator is the caret icon on the component used to indicate dropdown status.
@@ -98,8 +88,6 @@ attributes: {
 ```
 
 <SlotOpenIndicator />
-<<< @/.vuepress/components/SlotOpenIndicator.vue
-
 ## `option`
 
 The current option within the dropdown, contained within `<li>`.
@@ -107,8 +95,6 @@ The current option within the dropdown, contained within `<li>`.
 - `option {Object}` - The currently iterated option from `filteredOptions`
 
 <SlotOption />
-<<< @/.vuepress/components/SlotOption.vue
-
 ## `search`
 
 The search input has a lot of bindings, but they're grouped into `attributes` and `events`. Most
@@ -151,8 +137,11 @@ If you want the default styling, you'll need to add `.vs__search` to the input y
 ```
 
 <SlotSearch />
-<<< @/.vuepress/components/SlotSearch.vue{5-6}
+## `before-selected-options`
 
+The slot displayed before `selected-options-container`.
+
+<SlotBeforeSelectedOptions />
 ## `selected-option`
 
 The text displayed within `selected-option-container`.
@@ -162,8 +151,6 @@ This slot doesn't exist if `selected-option-container` is implemented.
 - `option {Object}` - A selected option
 
 <SlotSelectedOption />
-<<< @/.vuepress/components/SlotSelectedOption.vue
-
 ## `selected-options-container`
 
 This is the root element above `selected-option-container` slot. It allows to customize rendering of the whole options container,
@@ -179,8 +166,6 @@ for example rendering only first select value along with count of rest of select
 - `registerDeselectButton {Function}` - Function which adds ref to list of deselect buttons
 
 <SlotSelectedOptionContainer />
-<<< @/.vuepress/components/SlotSelectedOptionsContainer.vue
-
 
 ## `selected-option-container`
 
@@ -194,13 +179,9 @@ or have fine grain control over the markup.
 - `multiple {Boolean}` - If the component supports the selection of multiple values
 
 <SlotSelectedOptionContainer />
-<<< @/.vuepress/components/SlotSelectedOptionContainer.vue
-
 ## `spinner`
 
 - `loading {Boolean}` - if the component is in a loading state
 
 <SlotSpinner />
-<<< @/.vuepress/components/SlotSpinner.vue
-
 </div>

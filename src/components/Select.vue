@@ -15,6 +15,7 @@
       aria-label="Search for option"
       @mousedown="toggleDropdown($event)"
     >
+      <slot name="before-selected-options"></slot>
       <div ref="selectedOptions" class="vs__selected-options">
         <slot
           name="selected-options-container"

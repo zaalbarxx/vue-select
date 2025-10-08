@@ -1,4 +1,4 @@
-const meta = require('./meta')
+import meta from './meta';
 
 const head = [
   [
@@ -56,4 +56,4 @@ const head = [
   ['meta', { property: 'og:url', content: meta.url }],
 ]
 
-module.exports = head
+export default head;

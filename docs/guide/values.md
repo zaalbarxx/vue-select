@@ -129,8 +129,6 @@ value, but the complete option object is not present in the `options` array.
 
 <ReducedWithNoMatchingOption />
 
-<<< @/.vuepress/components/ReducedWithNoMatchingOption.vue
-
 In the example above, the component was supplied with an ID that doesn't exist in the `options`
 array. When `value` changes, Vue Select searches the supplied options, running each one
 through `reduce` until the corresponding option is found. When that option doesn't exist, Vue Select

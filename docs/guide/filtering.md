@@ -15,5 +15,3 @@ You can use the `filter` and `filterBy` props to hook right into something like
 [Fuse.js](https://fusejs.io/) that can handle searching multiple object keys with fuzzy matchings.
 
 <FuseFilter />
-
-<<< @/.vuepress/components/FuseFilter.vue
